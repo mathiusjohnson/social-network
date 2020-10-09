@@ -235,7 +235,7 @@ export default function PostListItem(props: IProps) {
                     >
                     Edit
                     </div>
-                    <div className="blue-button button-transition delete-btn float-right" onClick={onDelete}>Delete</div> 
+                    <div className="blue-button delete-button-transition delete-btn float-right" onClick={onDelete}>Delete</div> 
                   </div> : ""
 
                   }
@@ -341,7 +341,7 @@ export default function PostListItem(props: IProps) {
                     <div className="likes-comments">
                       {/* LIKE COUNT */}
 
-                      {iAlreadyLikeThis ? 
+                      {iAlreadyLikeThis && likeSum > 1 ? 
                         <p onClick={() => props.removeLike(props.post.post_id, currentUser.id)}>
                         <b>You and {likeSum - 1} others</b></p> : ""}
 

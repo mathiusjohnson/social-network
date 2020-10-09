@@ -9,7 +9,7 @@ import { Card, CardBody } from "@paljs/ui/Card";
 import { Link } from "@reach/router";
 
 function UserInfo(props) {
-  const senderID = document.cookie.split("=")[1];
+  const senderID = typeof document !== 'undefined' && document.cookie.split("=")[1];
   if (!props.user) return null;
   console.log("props in userinfo: ", props.user);
 
@@ -31,10 +31,10 @@ function UserInfo(props) {
                     User is <span className="online">online</span>
                   </p>
                 ) : (
-                  <p className="status">
-                    User is <span className="offline">offline</span>
-                  </p>
-                )}
+                    <p className="status">
+                      User is <span className="offline">offline</span>
+                    </p>
+                  )}
               </div>
               <p className="username">
                 <span>@</span>
@@ -65,17 +65,17 @@ function UserInfo(props) {
                 Edit
               </button>
             ) : (
-              <Link to={`/messages/`} state={{ username: props.user.username }}>
-                <button
-                  fullWidth
-                  appearance="hero"
-                  className="green-button green button-transition"
+                <Link to={`/messages/`} state={{ username: props.user.username }}>
+                  <button
+                    fullWidth
+                    appearance="hero"
+                    className="green-button green button-transition"
                   // onClick={props.onEdit}
-                >
-                  Message
+                  >
+                    Message
                 </button>
-              </Link>
-            )}
+                </Link>
+              )}
           </Row>
         </div>
       </CardBody>

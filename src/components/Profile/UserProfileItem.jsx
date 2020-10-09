@@ -33,8 +33,8 @@ function UserProfileItem(props) {
     deletePost,
   } = useApplicationData();
   const { mode, transition, back } = useVisualMode(SHOW);
-  const loggedUser = document.cookie.split("=")[1];
-  let senderID = document.cookie.split("=")[1];
+  const loggedUser = typeof document !== 'undefined' && document.cookie.split("=")[1];
+  let senderID = typeof document !== 'undefined' && document.cookie.split("=")[1];
 
   function onEdit() {
     transition(EDITING);
@@ -135,8 +135,8 @@ function UserProfileItem(props) {
                     </Col>
                   </Row>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
                 <Row>
                   <Col breakPoint={{ xs: 12, md: 12 }}>
                     <h2>Recent Posts...</h2>

@@ -10,19 +10,19 @@ export default function LoginLogout() {
   const { state } = useApplicationData();
 
   function login(data, set) {
-    const userID = Number(document.querySelector("#login-user-id").value);
+    const userID = typeof document !== 'undefined' && Number(document.querySelector("#login-user-id").value);
     document.cookie = `userID=${userID};`;
 
-    axios.post("http://localhost:8001/api/login", { userID }).then((res) => {
+    axios.post("https://stack-network.herokuapp.com/api/login", { userID }).then((res) => {
       const username = res.data[0].username;
       console.log("data in login: ", res.data[0]);
       set({ ...data, state: state, selected: res.data[0].id });
 
       // MATT'S CODE************************************************************
       const avatar = res.data[0].avatar;
-      const rightNavContainer = document.querySelector(".sc-kEqYlL.gyZWym.right");
+      const rightNavContainer = typeof document !== 'undefined' && document.querySelector(".sc-kEqYlL.efNBuU.right");
 
-      const userDisplay = document.querySelector('.logged-in-username');
+      const userDisplay = typeof document !== 'undefined' && document.querySelector('.logged-in-username');
 
       if (userDisplay) {
         userDisplay.remove();
@@ -40,27 +40,27 @@ export default function LoginLogout() {
       }
 
       // MATT'S CODE************************************************************
-      localStorage.setItem('userID', userID);
-      localStorage.setItem('username', username);
-      localStorage.setItem('avatarUrl', avatar);
+      typeof localStorage !== 'undefined' && localStorage.setItem('userID', userID);
+      typeof localStorage !== 'undefined' && localStorage.setItem('username', username);
+      typeof localStorage !== 'undefined' && localStorage.setItem('avatarUrl', avatar);
       // MATT'S CODE************************************************************
 
       // MATT'S CODE FOR ADDING MESSAGES NOTIFICATIONS ON LOGIN************************************************************
-      axios.post('http://localhost:8001/api/messages/unread_count', { userID })
+      axios.post('https://stack-network.herokuapp.com/api/messages/unread_count', { userID })
         .then(res => {
           setNotifications(Number(res.data[0].count));
-          localStorage.setItem('unreadMessages', Number(res.data[0].count))
+          typeof localStorage !== 'undefined' && localStorage.setItem('unreadMessages', Number(res.data[0].count))
         })
 
       // MATT'S CODE FOR ADDING MESSAGES NOTIFICATIONS ON LOGIN************************************************************
 
       // MATT'S CODE FOR ADDING TUTOR SESSION NOTIFICATION ON LOGIN************************************************************
 
-      axios.post('http://localhost:8001/api/tutor_experiences/unseen_count', { userID })
+      axios.post('https://stack-network.herokuapp.com/api/tutor_experiences/unseen_count', { userID })
         .then(res => {
           console.log('unseen count', res.data[0]);
           setUnseenTutor(Number(res.data[0].count))
-          localStorage.setItem('unreadTutor', Number(res.data[0].count))
+          typeof localStorage !== 'undefined' && localStorage.setItem('unreadTutor', Number(res.data[0].count))
         })
 
       // MATT'S CODE FOR ADDING TUTOR SESSION NOTIFICATION ON LOGIN************************************************************
@@ -69,24 +69,24 @@ export default function LoginLogout() {
   }
   // console.log("State in login: ", state);
   function logout(data, set) {
-    const currentUserID = document.cookie.split('=')[1];
+    const currentUserID = typeof document !== 'undefined' && document.cookie.split('=')[1];
     document.cookie = `userID=${currentUserID}; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 
     // MATT'S CODE************************************************************
-    const userDisplay = document.querySelector('.logged-in-username');
+    const userDisplay = typeof document !== 'undefined' && document.querySelector('.logged-in-username');
 
     if (userDisplay) {
       userDisplay.remove();
     }
 
-    localStorage.removeItem('userID');
-    localStorage.removeItem('username');
-    localStorage.removeItem('avatarUrl');
-    localStorage.removeItem('unreadMessages');
-    localStorage.removeItem('unreadTutor');
-    localStorage.removeItem('Login');
+    typeof localStorage !== 'undefined' && localStorage.removeItem('userID');
+    typeof localStorage !== 'undefined' && localStorage.removeItem('username');
+    typeof localStorage !== 'undefined' && localStorage.removeItem('avatarUrl');
+    typeof localStorage !== 'undefined' && localStorage.removeItem('unreadMessages');
+    typeof localStorage !== 'undefined' && localStorage.removeItem('unreadTutor');
+    typeof localStorage !== 'undefined' && localStorage.removeItem('Login');
     // MATT'S CODE************************************************************
-    set({ ...data, state: null, selected: null});
+    set({ ...data, state: null, selected: null });
 
   }
 
@@ -112,7 +112,7 @@ export default function LoginLogout() {
               Login
               </button> */}
             <Link to={'/'}>
-              <button type="button" name="logout" onClick={() => logout(data, set)}>
+              <button type="button" name="logout" id='logout-btn-nav' onClick={() => logout(data, set)}>
                 Logout
               </button>
             </Link>

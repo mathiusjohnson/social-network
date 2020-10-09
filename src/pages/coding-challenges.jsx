@@ -18,13 +18,13 @@ export default function CodingChallenges() {
 
   useEffect(() => {
 
-    let userID = document.cookie.split('=')[1];
+    let userID = typeof document !== 'undefined' && document.cookie.split('=')[1];
     if (userID) userID = Number(userID);
 
-    const promiseUserChallenges = axios.get('http://localhost:8001/api/user_challenges');
-    const promiseUserInfo = axios.post('http://localhost:8001/api/login', { userID });
-    const promiseAllChallenges = axios.get('http://localhost:8001/api/challenges/all');
-    const promiseTests = axios.get('http://localhost:8001/api/challenges/tests');
+    const promiseUserChallenges = axios.get('https://stack-network.herokuapp.com/api/user_challenges');
+    const promiseUserInfo = axios.post('https://stack-network.herokuapp.com/api/login', { userID });
+    const promiseAllChallenges = axios.get('https://stack-network.herokuapp.com/api/challenges/all');
+    const promiseTests = axios.get('https://stack-network.herokuapp.com/api/challenges/tests');
 
     Promise.all([promiseUserChallenges, promiseUserInfo, promiseAllChallenges, promiseTests])
       .then(all => {

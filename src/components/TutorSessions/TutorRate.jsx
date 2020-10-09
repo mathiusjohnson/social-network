@@ -12,7 +12,7 @@ export default function TutorRate(props) {
   const onStarHover = (nextValue) => setRating(nextValue);
 
   function getIsMentor(props) {
-    const userID = Number(document.cookie.split('=')[1]);
+    const userID = typeof document !== 'undefined' && Number(document.cookie.split('=')[1]);
     const sessionID = props.currentTutorID;
 
     for (let tutorSession of props.currentTutorData) {
@@ -27,14 +27,14 @@ export default function TutorRate(props) {
   }
 
   function getTutorComments() {
-    return document.querySelector('#tutor-rate-comments').value;
+    return typeof document !== 'undefined' && document.querySelector('#tutor-rate-comments').value;
   }
 
   function getOtherUsername(props) {
     if (props.unratedSession) {
 
       let otherUserID;
-      const loggedInUserID = Number(document.cookie.split('=')[1]);
+      const loggedInUserID = typeof document !== 'undefined' && Number(document.cookie.split('=')[1]);
 
       if (props.unratedSession.mentor_id === loggedInUserID) {
         otherUserID = props.unratedSession.student_id;

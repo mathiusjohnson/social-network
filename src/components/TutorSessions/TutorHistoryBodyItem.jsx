@@ -15,11 +15,11 @@ export default function TutorHistoryBodyItem(props) {
   })
 
   function isCreator(props) {
-    return Number(document.cookie.split('=')[1]) === props.creatorID;
+    return typeof document !== 'undefined' && Number(document.cookie.split('=')[1]) === props.creatorID;
   }
 
   function getUsername(props) {
-    const myUserID = Number(document.cookie.split('=')[1]);
+    const myUserID = typeof document !== 'undefined' && Number(document.cookie.split('=')[1]);
 
     let otherID;
     if (myUserID === props.mentorID) otherID = props.studentID;
@@ -34,7 +34,7 @@ export default function TutorHistoryBodyItem(props) {
   }
 
   function getOtherUserID(props) {
-    const currentUserID = Number(document.cookie.split('=')[1]);
+    const currentUserID = typeof document !== 'undefined' && Number(document.cookie.split('=')[1]);
     if (currentUserID === props.studentID) {
       return props.mentorID;
     }

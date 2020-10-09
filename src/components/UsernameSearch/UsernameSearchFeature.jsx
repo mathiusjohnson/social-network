@@ -19,7 +19,7 @@ export default function UsernameSearchFeature(props) {
   const usernameList = props.usernameList;
 
   function changeSearchState() {
-    const userInput = document.querySelector('#search-user-input').value
+    const userInput = typeof document !== 'undefined' && document.querySelector('#search-user-input').value
     // console.log(userInput);
 
     // user has to input set number of chars
@@ -38,7 +38,7 @@ export default function UsernameSearchFeature(props) {
 
   function setUsernameValue(username) {
 
-    const searchInput = document.querySelector('#search-user-input');
+    const searchInput = typeof document !== 'undefined' && document.querySelector('#search-user-input');
     searchInput.value = username;
 
     setSearchResults([]);
