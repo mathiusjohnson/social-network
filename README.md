@@ -1,6 +1,6 @@
 # Stack Social Network
 
-Sit is live at https://the-stack-app.netlify.app/
+Site is live at https://the-stack-app.netlify.app/
 
 # Final Product
 
