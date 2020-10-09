@@ -1,3 +1,22 @@
+# Stack Social Network
+
+Sit is live at https://the-stack-app.netlify.app/
+
+# Final Product
+
+!["Login Page"](https://raw.githubusercontent.com/mathiusjohnson/social_network/master/public/images/login-page.png)
+
+!["Register Page"](https://raw.githubusercontent.com/mathiusjohnson/social_network/master/public/images/register-page.png)
+
+!["Profile Page"](https://raw.githubusercontent.com/mathiusjohnson/social_network/master/public/images/profile-page.png)
+
+!["User List Page"](https://raw.githubusercontent.com/mathiusjohnson/social_network/master/public/images/user-list.png)
+
+!["Messaging Page"](https://raw.githubusercontent.com/mathiusjohnson/social_network/master/public/images/messaging.png)
+
+!["Home Page"](https://raw.githubusercontent.com/mathiusjohnson/social_network/master/public/images/dashboard.png)
+
+!["Coding Challenges"](https://raw.githubusercontent.com/mathiusjohnson/social_network/master/public/images/coding-challenges.png)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,3 +85,39 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Dependencies
+
+	"@fortawesome/fontawesome-svg-core": "^1.2.32",
+	"@fortawesome/free-regular-svg-icons": "^5.15.1",
+	"@fortawesome/free-solid-svg-icons": "^5.15.1",
+	"@fortawesome/react-fontawesome": "^0.1.11",
+	"@types/express": "^4.17.8",
+	"@types/node": "^14.11.1",
+	"@types/react": "16.9.46",
+	"@types/react-dom": "16.9.8",
+	"@types/react-helmet": "6.1.0",
+	"@types/react-select": "3.0.19",
+	"@types/styled-components": "5.1.2",
+	"@typescript-eslint/eslint-plugin": "3.9.1",
+	"@typescript-eslint/parser": "3.9.1",
+	"eslint": "7.7.0",
+	"eslint-config-prettier": "6.11.0",
+	"eslint-plugin-prettier": "3.1.4",
+	"eslint-plugin-react": "7.20.6",
+	"gatsby-plugin-layout": "^1.3.10",
+	"gatsby-plugin-sass": "^2.3.14",
+	"gh-pages": "3.1.0",
+	"husky": "4.2.5",
+	"node-fetch": "^2.6.1",
+	"node-sass": "^4.14.1",
+	"postgresql": "0.0.1",
+	"prettier": "2.0.5",
+	"pretty-quick": "3.0.0",
+	"proptypes": "^1.1.0",
+	"react-live": "2.2.2",
+	"react-router-dom": "^5.2.0",
+	"react-star-rating-component": "^1.4.1",
+	"reactstrap": "^8.6.0",
+	"simple-react-comments": "^1.1.0",
+	"typescript": "4.0.2"
