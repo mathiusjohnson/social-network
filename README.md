@@ -1,5 +1,7 @@
 # Stack Social Network
 
+Stack Social Network is a game-ified social network geared towards mentoring web developers. Users can network with students and mentors, and can be both a student and mentor for specific languages or learning goals. It is game-ified with a rating system that provides experience points with a progress levelling bar as a student or mentor.
+
 Site is live at https://the-stack-app.netlify.app/
 
 # Final Product
@@ -18,6 +20,16 @@ Site is live at https://the-stack-app.netlify.app/
 
 !["Coding Challenges"](https://raw.githubusercontent.com/mathiusjohnson/social_network/master/public/images/coding-challenges.png)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Future Goals
+
+- Websocket fully implemented for real-time updates.
+- 80% + test coverage with Jest and Cypress.
+- Potential migration off of Gatsby UI for better state-management.
+- More secure login authentication.
+- Coding Challenges feature.
+- Experience bars specific to languages.
+- And much, much more!
 
 ## Available Scripts
 
