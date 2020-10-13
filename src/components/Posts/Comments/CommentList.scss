@@ -1,0 +1,35 @@
+.comment-list .comment-avatar {
+	display: flex;
+}
+.comment-list .comments {
+	list-style-type: none;
+	background-color: #2b3858;
+	color: white;
+	display: inline-block;
+	width: 70%;
+	border-radius: 5px;
+	margin-left: 60px;
+	padding: 10px;
+	margin-top: -40px;
+}
+
+.comment-list .comments li {
+	color: black;
+}
+
+.comment-list .comment-username {
+	font-size: 1.1em;
+}
+
+.comment-list .delete-button {
+	color: rgb(250, 70, 70);
+	font-weight: 500;
+	display: flex;
+	float: right;
+	font-size: 0.9em;
+}
+
+.comment-list .delete-button:hover {
+	cursor: pointer;
+	opacity: 0.7;
+}

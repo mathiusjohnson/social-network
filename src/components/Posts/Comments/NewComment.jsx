@@ -1,37 +1,37 @@
 import React, {useState} from "react";
-import '../PostListItem.scss'
-export default function CommentForm(props) {
-  const [value, setValue] = useState("Comment here...");
-  // const [error, setError] = useState("");
+import './NewComment.scss'
 
-  const onSave = () => {
-    //check for empty input here
-    console.log("props post id: ", props.post.post_id);
+
+export default function CommentForm(props) {
+  const [value, setValue] = useState("");
+  const [error, setError] = useState("");
     
     const commentObj = {
       avatar: props.currentUser.avatar,
       username: props.currentUser.username,
     };
 
-    if (value === "") {
-      props.setError("Comment cannot be blank");
-      return;
+    function onValidateComment() {
+      if (value === "") {
+        setError("Comment cannot be blank");
+        return;
+      }
+      if (value !== ""){
+        setError("");
+        props.createComment(
+          props.post.post_id,                 
+          props.currentUser.id,
+          value,
+          commentObj)
+          .then(() => {
+        setValue("");
+        });         
+      }
     }
-
-    if (value !== ""){
-      props.setError("");
-      props.createComment(
-        props.post.post_id,                 
-        props.currentUser.id,
-        value,
-        commentObj)
-        .then(() => {
-      setValue("");
-      });     
-  };
 
   return (
     <>
+      <div className="new-comment">
         <div className="center-textarea">
           <textarea 
             className="comment-textarea"
@@ -45,9 +45,9 @@ export default function CommentForm(props) {
           <section className="validation">{error}</section>
         </div>
         <div className="comment-like-button-flex">
-          <div className="comment-button button-transition"onClick={() => onSave()}>Comment</div>
+          <div className="comment-button button-transition"onClick={() => onValidateComment()}>Comment</div>
         </div>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 }

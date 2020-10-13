@@ -94,37 +94,6 @@
     float: right;
     scroll-snap-align: start;
   }
-  .comment-list {
-    border-radius: 5px;
-    overflow: scroll;
-    background-color: white;
-    height: 150px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .comment-avatar {
-    display: flex;
-  }
-
-  .comment-username {
-    font-size: 1.1em;
-  }
-
-  .comments {
-    list-style-type: none;
-    background-color: #2b3858;
-    color: white;
-    display: inline-block;
-    width: 70%;
-    border-radius: 5px;
-    margin-left: 60px;
-    padding: 10px;
-    margin-top: -40px;
-  }
-  .comments li {
-    color: black;
-  }
 
   /* -------------- BUTTONS ---------------*/
 
@@ -253,18 +222,6 @@
     cursor: pointer;
   }
 
-  .delete-button {
-    color: rgb(250, 70, 70);
-    font-weight: 500;
-    display: flex;
-    float: right;
-    font-size: 0.9em;
-  }
-
-  .delete-button:hover {
-    cursor: pointer;
-    opacity: 0.7;
-  }
 
   input[type="checkbox"] {
     display: none;
@@ -325,37 +282,37 @@
     transform: rotate(90deg) translateX(-3px);
   }
 
-  .center-textarea {
-    display: flex;
-    justify-content: center;
-  }
-  .comment-textarea {
-    border-radius: 5px;
-    margin-top: 5px;
-    width: 60%;
-    margin-left: 25px;
-    display: flex;
-    align-items: center;
-    background-color: #192038;
-    color: white;
-    border: 1px solid #222b45;
-    padding: 0.4rem 0.6rem;
-  }
+  // .center-textarea {
+  //   display: flex;
+  //   justify-content: center;
+  // }
+  // .comment-textarea {
+  //   border-radius: 5px;
+  //   margin-top: 5px;
+  //   width: 60%;
+  //   margin-left: 25px;
+  //   display: flex;
+  //   align-items: center;
+  //   background-color: #192038;
+  //   color: white;
+  //   border: 1px solid #222b45;
+  //   padding: 0.4rem 0.6rem;
+  // }
 
-  .validation {
-    color: red;
-  }
+  // .validation {
+  //   color: red;
+  // }
 
   ::placeholder {
     opacity: .9;
   }
 
-  .comment-textarea:focus,
-  .comment-textarea:hover
-   {
-    outline: none;
-    border: 1px solid #3366ff;
-  }
+  // .comment-textarea:focus,
+  // .comment-textarea:hover
+  //  {
+  //   outline: none;
+  //   border: 1px solid #3366ff;
+  // }
 
   .comment-like-button-flex {
     display: flex;

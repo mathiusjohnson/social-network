@@ -1,8 +1,6 @@
-import { breakpointUp } from "@paljs/ui/breakpoints";
-import { Card, CardBody, CardHeader, CardFooter } from "@paljs/ui/Card";
 import Row from "@paljs/ui/Row";
 import Col from "@paljs/ui/Col";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 function Stack(props) {
   //console.log("from USER STACK", props);

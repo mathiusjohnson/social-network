@@ -1,0 +1,40 @@
+.new-comment {
+	.center-textarea {
+		display: flex;
+		justify-content: center;
+	}
+	.center-textarea .comment-textarea {
+		border-radius: 5px;
+		margin-top: 5px;
+		width: 60%;
+		margin-left: 25px;
+		display: flex;
+		align-items: center;
+		background-color: #192038;
+		color: white;
+		border: 1px solid #222b45;
+		padding: 0.4rem 0.6rem;
+	}
+	
+	.validation {
+		color: red;
+	}
+	
+	::placeholder {
+		opacity: .9;
+	}
+	
+	.center-textarea .comment-textarea:focus,
+	.center-textarea .comment-textarea:hover
+	 {
+		outline: none;
+		border: 1px solid #3366ff;
+	}
+	
+	.comment-like-button-flex {
+		display: flex;
+		justify-content: flex-end;
+		margin-right: 55px;
+		// align-items: center;
+	}
+}
