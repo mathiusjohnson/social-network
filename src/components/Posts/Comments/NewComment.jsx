@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import '../PostListItem.scss'
 export default function CommentForm(props) {
-  const [value, setValue] = React.useState("Comment here...");
-  const [error, setError] = useState("");
+  const [value, setValue] = useState("Comment here...");
+  // const [error, setError] = useState("");
 
   const onSave = () => {
     //check for empty input here
@@ -14,15 +14,15 @@ export default function CommentForm(props) {
     };
 
     if (value === "") {
-      setError("Comment cannot be blank");
+      props.setError("Comment cannot be blank");
       return;
     }
 
     if (value !== ""){
-      setError("");
+      props.setError("");
       props.createComment(
         props.post.post_id,                 
-        currentUser.id,
+        props.currentUser.id,
         value,
         commentObj)
         .then(() => {

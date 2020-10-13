@@ -1,0 +1,38 @@
+.likes-comments {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 10px;
+}
+
+.likes-comments:hover {
+	cursor: pointer;
+}
+
+.likes {
+	display: flex;
+	align-items: center;
+}
+
+.love {
+	color: none;
+	margin-bottom: 3px;
+	margin-right: 5px;
+	margin-top: 12px;
+}
+
+.love:hover {
+	color: rgb(250, 70, 70);
+	cursor: pointer;
+	margin-right: 5px;
+}
+
+.unlove {
+	color: rgb(250, 70, 70);
+	margin-right: 5px;
+	margin-bottom: 3px;
+	margin-top: 12px;
+}
+
+.unlove:hover {
+	cursor: pointer;
+}
