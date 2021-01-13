@@ -44,20 +44,20 @@ export default function useApplicationData() {
   // RETRIEVES API AND SETS IT WITH REDUCER
   useEffect(() => {
     Promise.all([
-      axios.get("http://localhost:8001/api/comments"),
-      axios.get("http://localhost:8001/api/likes"),
-      axios.get("http://localhost:8001/api/mentor_stack"),
-      axios.get("http://localhost:8001/api/posts"),
-      axios.get("http://localhost:8001/api/student_stack"),
-      axios.get("http://localhost:8001/api/tutor_experiences"),
-      axios.get("http://localhost:8001/api/user_profiles"),
-      axios.get("http://localhost:8001/api/users"),
-      axios.get("http://localhost:8001/api/mentor_points"),
-      axios.get("http://localhost:8001/api/student_points"),
-      axios.get("http://localhost:8001/api/stack_preferences"),
-      axios.get("http://localhost:8001/api/posts_stacks"),
-      axios.get("http://localhost:8001/api/register/avatars"),
-      axios.get("http://localhost:8001/api/posts"),
+      axios.get("https://stack-social-network.herokuapp.com/api/comments"),
+      axios.get("https://stack-social-network.herokuapp.com/api/likes"),
+      axios.get("https://stack-social-network.herokuapp.com/api/mentor_stack"),
+      axios.get("https://stack-social-network.herokuapp.com/api/posts"),
+      axios.get("https://stack-social-network.herokuapp.com/api/student_stack"),
+      axios.get("https://stack-social-network.herokuapp.com/api/tutor_experiences"),
+      axios.get("https://stack-social-network.herokuapp.com/api/user_profiles"),
+      axios.get("https://stack-social-network.herokuapp.com/api/users"),
+      axios.get("https://stack-social-network.herokuapp.com/api/mentor_points"),
+      axios.get("https://stack-social-network.herokuapp.com/api/student_points"),
+      axios.get("https://stack-social-network.herokuapp.com/api/stack_preferences"),
+      axios.get("https://stack-social-network.herokuapp.com/api/posts_stacks"),
+      axios.get("https://stack-social-network.herokuapp.com/api/register/avatars"),
+      axios.get("https://stack-social-network.herokuapp.com/api/posts"),
     ]).then((all) => {
       // console.log("all from applicatin data hook: ", all);
       const comments = all[0].data;
@@ -143,7 +143,7 @@ export default function useApplicationData() {
     }
 
     const promise = axios
-      .post(`http://localhost:8001/api/posts`, { newPost })
+      .post(`https://stack-social-network.herokuapp.com/api/posts`, { newPost })
       .then((response) => {
         console.log("response.data in first .then", response.data);
         getNewPostId(response.data);
@@ -157,7 +157,7 @@ export default function useApplicationData() {
       console.log(res.id);
       Promise.all(
         techStack.map((element) => {
-          axios.post(`http://localhost:8001/api/posts_stacks`, {
+          axios.post(`https://stack-social-network.herokuapp.com/api/posts_stacks`, {
             post_id: res.id,
             stack_id: element.id,
           });
@@ -179,7 +179,7 @@ export default function useApplicationData() {
       liker_id: likerId,
     };
     const promise = axios
-      .post(`http://localhost:8001/api/likes`, { newLike })
+      .post(`https://stack-social-network.herokuapp.com/api/likes`, { newLike })
       .then((response) => {
         console.log("response in likes hook: ", response);
         dispatch({
@@ -200,7 +200,7 @@ export default function useApplicationData() {
       liker_id: unlikerId,
     };
     const promise = axios
-      .delete(`http://localhost:8001/api/likes`, {
+      .delete(`https://stack-social-network.herokuapp.com/api/likes`, {
         params: { removeLike: removeLike },
       })
       .then((response) => {
@@ -228,7 +228,7 @@ export default function useApplicationData() {
     console.log("new comment in hook: ", newComment);
 
     const promise = axios
-      .post(`http://localhost:8001/api/comments`, { newComment })
+      .post(`https://stack-social-network.herokuapp.com/api/comments`, { newComment })
       .then((response) => {
         console.log("response.data in first .then", response.data[0]);
         dispatch({
@@ -254,7 +254,7 @@ export default function useApplicationData() {
     console.log("new comment in hook: ", updatedComment);
 
     const promise = axios
-      .put(`http://localhost:8001/api/comments`, { updatedComment })
+      .put(`https://stack-social-network.herokuapp.com/api/comments`, { updatedComment })
       .then((response) => {
         console.log("response.data in first .then", response.data[0]);
         dispatch({
@@ -271,7 +271,7 @@ export default function useApplicationData() {
     console.log("from hook", editedPost, post_id, id);
 
     const promise = axios
-      .put(`http://localhost:8001/api/posts`, {
+      .put(`https://stack-social-network.herokuapp.com/api/posts`, {
         text_body: editedPost,
         post_id: post_id,
       })
@@ -299,11 +299,11 @@ export default function useApplicationData() {
     );
 
     const promise = Promise.all([
-      axios.put("http://localhost:8001/api/users/edit", {
+      axios.put("https://stack-social-network.herokuapp.com/api/users/edit", {
         id: id,
         username: newInfo["username"],
       }),
-      axios.put("http://localhost:8001/api/user_profiles/edit", {
+      axios.put("https://stack-social-network.herokuapp.com/api/user_profiles/edit", {
         id: id,
         avatar: newInfo["avatar"],
         location: newInfo["location"],
@@ -323,7 +323,7 @@ export default function useApplicationData() {
     console.log("here in delete", post_id);
 
     const promise = axios
-      .delete(`http://localhost:8001/api/posts`, { params: { post_id } })
+      .delete(`https://stack-social-network.herokuapp.com/api/posts`, { params: { post_id } })
       .then((response) => {
         // console.log("response.data in first .then", response.data[0]);
         dispatch({
@@ -346,7 +346,7 @@ export default function useApplicationData() {
       axios
         .all(
           arrOfRemoved.map((element) => {
-            axios.delete(`http://localhost:8001/api/mentor_stack`, {
+            axios.delete(`https://stack-social-network.herokuapp.com/api/mentor_stack`, {
               params: element,
             });
           })
@@ -363,7 +363,7 @@ export default function useApplicationData() {
       axios
         .all(
           arrOfAdded.map((element) => {
-            axios.post(`http://localhost:8001/api/mentor_stack`, element);
+            axios.post(`https://stack-social-network.herokuapp.com/api/mentor_stack`, element);
           })
         )
         .then(
@@ -382,7 +382,7 @@ export default function useApplicationData() {
       commenter_id: commenterId,
     };
     const promise = axios
-      .delete(`http://localhost:8001/api/comments`, {
+      .delete(`https://stack-social-network.herokuapp.com/api/comments`, {
         params: { removeComment: removeComment },
       })
       .then((response) => {

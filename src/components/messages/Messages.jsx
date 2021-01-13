@@ -32,7 +32,7 @@ export default function Messages(props) {
 
     const userID = document.cookie.split('=')[1];
 
-    axios.post('http://localhost:8001/api/messages/', { userID })
+    axios.post('https://stack-social-network.herokuapp.com/api/messages/', { userID })
       .then((data) => {
         const currentUserID = data.data.userId;
         const currentData = data.data.data;
@@ -86,7 +86,7 @@ export default function Messages(props) {
   }, [count]);
 
   useEffect(() => {
-    axios.get('http://localhost:8001/api/user_profiles')
+    axios.get('https://stack-social-network.herokuapp.com/api/user_profiles')
       .then(res => {
         setAvatars(res.data);
       })
@@ -169,7 +169,7 @@ export default function Messages(props) {
 
     const currentUserID = Number(document.cookie.split('=')[1]);
 
-    axios.put('http://localhost:8001/api/messages/read', { currentUserID, otherUserID })
+    axios.put('https://stack-social-network.herokuapp.com/api/messages/read', { currentUserID, otherUserID })
       .then(() => {
         setCount(count + 1);
       })
@@ -229,7 +229,7 @@ export default function Messages(props) {
     } else {
       const senderID = document.cookie.split('=')[1];
 
-      axios.post('http://localhost:8001/api/messages/new', { textInput, receiverID, senderID })
+      axios.post('https://stack-social-network.herokuapp.com/api/messages/new', { textInput, receiverID, senderID })
         .then((res) => {
           console.log('resssss', res);
           if (createNew) {
@@ -306,7 +306,7 @@ export default function Messages(props) {
       }, 2000);
       return;
     } else {
-      axios.post('http://localhost:8001/api/tutor_experiences/new', { mentorID, studentID, creatorID })
+      axios.post('https://stack-social-network.herokuapp.com/api/tutor_experiences/new', { mentorID, studentID, creatorID })
         .then(() => {
           setShowTutor(false);
           setCount(count + 1);

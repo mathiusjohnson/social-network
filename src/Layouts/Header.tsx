@@ -115,20 +115,26 @@ const Header: React.FC<HeaderProps> = (props) => {
                     {({ data }) => {
                       if (!data.state) return null;
                       if (!data.selected) return null;
+                      let user;
                       const currentUser = data.state.users.find(
                         (user) => user.id === data.selected
                       );
-                      return (
-                        <div className={title}>
-                          <span>         
-                              {currentUser.mentorrating ? 
-                                <span>
-                                 Mentor Lvl:
-                                </span>
-                              : ""}
-                          </span>       
-                        </div>
-                      )
+
+                      if (currentUser) {
+                        user = currentUser;
+                      }
+                        return (
+                          <div className={title}>
+                            <span>         
+                                {user.mentorrating ? 
+                                  <span>
+                                   Mentor Lvl:
+                                  </span>
+                                : ""}
+                            </span>       
+                          </div>
+                        )
+                      
                     }}
                 </ContextConsumer>
               ),
@@ -144,16 +150,16 @@ const Header: React.FC<HeaderProps> = (props) => {
                     {({ data }) => {
                       if (!data.state) return null;
                       if (!data.selected) return null;
-                      const currentUser = data.state.users.find(
+                      const user = data.state.users.find(
                         (user) => user.id === data.selected
                       );
                       return (
                         <div className={experience}>
                           <span>         
-                              {currentUser.mentorrating ? 
+                              {user.mentorrating ? 
                                 <span>
                                   <ProgressBar 
-                                    experience={Number(currentUser.mentorrating)}
+                                    experience={Number(user.mentorrating)}
                                   />
                                 </span>
                               : ""}
@@ -175,13 +181,13 @@ const Header: React.FC<HeaderProps> = (props) => {
                     {({ data }) => {
                       if (!data.state) return null;
                       if (!data.selected) return null;
-                      const currentUser = data.state.users.find(
+                      const user = data.state.users.find(
                         (user) => user.id === data.selected
                       );
                       return (
                         <div className={title}>
                           <span>         
-                              {currentUser.studentrating ? 
+                              {user.studentrating ? 
                                 <span>
                                   Student Lvl:
                                 </span>
@@ -204,16 +210,16 @@ const Header: React.FC<HeaderProps> = (props) => {
                     {({ data }) => {
                       if (!data.state) return null;
                       if (!data.selected) return null;
-                      const currentUser = data.state.users.find(
+                      const user = data.state.users.find(
                         (user) => user.id === data.selected
                       );
                       return (
                         <div className={experience}>
                           <span>         
-                              {currentUser.studentrating ? 
+                              {user.studentrating ? 
                                 <span>
                                   <ProgressBar
-                                    experience={Number(currentUser.studentrating)}
+                                    experience={Number(user.studentrating)}
                                   />
                                 </span>
                               : ""}

@@ -17,8 +17,8 @@ export default function Register() {
 
   useEffect(() => {
 
-    const promiseAvatars = axios.get('http://localhost:8001/api/register/avatars');
-    const promiseRandomUsernames = axios.get('http://localhost:8001/api/register/random_usernames')
+    const promiseAvatars = axios.get('https://stack-social-network.herokuapp.com/api/register/avatars');
+    const promiseRandomUsernames = axios.get('https://stack-social-network.herokuapp.com/api/register/random_usernames')
 
     Promise.all([promiseAvatars, promiseRandomUsernames])
       .then(all => {
@@ -65,7 +65,7 @@ export default function Register() {
     }
     const avatarSrc = document.querySelector('.selected-avatar').children[0].src;
     console.log(avatarSrc);
-    if (avatarSrc === 'http://localhost:8000/register') {
+    if (avatarSrc === 'https://stack-social-network.herokuapp.com/api/register') {
       setSubmitError('Please select avatar!');
       return;
     }
@@ -74,7 +74,7 @@ export default function Register() {
     const emailInput = document.querySelector('#email-input').value;
     const passwordInput = document.querySelector('#password-input').value;
 
-    axios.post('http://localhost:8001/api/register/new', { usernameInput, emailInput, passwordInput, avatarSrc })
+    axios.post('https://stack-social-network.herokuapp.com/api/register/new', { usernameInput, emailInput, passwordInput, avatarSrc })
       .then(res => {
         console.log(res);
         setSubmitSuccess(true);

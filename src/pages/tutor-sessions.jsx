@@ -37,8 +37,8 @@ export default function TutorSessions() {
 
   useEffect(() => {
 
-    const promiseTutor = axios.get('http://localhost:8001/api/tutor_experiences');
-    const promiseUser = axios.get('http://localhost:8001/api/users');
+    const promiseTutor = axios.get('https://stack-social-network.herokuapp.com/api/tutor_experiences');
+    const promiseUser = axios.get('https://stack-social-network.herokuapp.com/api/users');
 
     Promise.all([promiseTutor, promiseUser])
       .then(all => {
@@ -83,7 +83,7 @@ export default function TutorSessions() {
 
   function acceptAction(tutorSessionID) {
 
-    axios.put('http://localhost:8001/api/tutor_experiences/accept', { tutorSessionID })
+    axios.put('https://stack-social-network.herokuapp.com/api/tutor_experiences/accept', { tutorSessionID })
       .then(() => {
         setCount(count + 1);
       })
@@ -93,7 +93,7 @@ export default function TutorSessions() {
 
     const userID = document.cookie.split('=')[1];
 
-    axios.put('http://localhost:8001/api/tutor_experiences/see_all', { userID })
+    axios.put('https://stack-social-network.herokuapp.com/api/tutor_experiences/see_all', { userID })
       .then(res => {
         console.log('newRes', res.data);
         setUnseenTutor(0);
@@ -117,7 +117,7 @@ export default function TutorSessions() {
 
   function confirmConfirmDelete(tutorSessionID) {
 
-    axios.put('http://localhost:8001/api/tutor_experiences/delete', { tutorSessionID })
+    axios.put('https://stack-social-network.herokuapp.com/api/tutor_experiences/delete', { tutorSessionID })
       .then(() => {
         setCancelDecline(false);
         setTutorSessionID(0);
@@ -137,7 +137,7 @@ export default function TutorSessions() {
 
     const ratingUsername = document.querySelector('.rate-tutor-header').children[0].textContent;
 
-    axios.put('http://localhost:8001/api/tutor_experiences/complete', { tutorSessionID, isMentor, rating, comments })
+    axios.put('https://stack-social-network.herokuapp.com/api/tutor_experiences/complete', { tutorSessionID, isMentor, rating, comments })
       .then((res) => {
         setCount(count + 1);
 
@@ -166,7 +166,7 @@ export default function TutorSessions() {
       isMentorRating = false;
     }
 
-    axios.put('http://localhost:8001/api/tutor_experiences/complete-other', { isMentorRating, rating, comments, tutorSessionID })
+    axios.put('https://stack-social-network.herokuapp.com/api/tutor_experiences/complete-other', { isMentorRating, rating, comments, tutorSessionID })
       .then((res) => {
         setUnratedSession(null);
         setCount(count + 1);
@@ -230,7 +230,7 @@ export default function TutorSessions() {
       }, 2000);
       return;
     } else {
-      axios.post('http://localhost:8001/api/tutor_experiences/new', { mentorID, studentID, creatorID })
+      axios.post('https://stack-social-network.herokuapp.com/api/tutor_experiences/new', { mentorID, studentID, creatorID })
         .then((res) => {
           setCount(count + 1);
           document.querySelector('#search-user-input').value = '';
@@ -270,7 +270,7 @@ export default function TutorSessions() {
 
     window.open('http://meet.google.com/new/');
 
-    axios.post('http://localhost:8001/api/messages/new', { textInput, receiverID, senderID })
+    axios.post('https://stack-social-network.herokuapp.com/api/messages/new', { textInput, receiverID, senderID })
       .then(res => {
         console.log(res);
         const link = 'http://meet.google.com/new/';

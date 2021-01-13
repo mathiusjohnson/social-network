@@ -13,7 +13,7 @@ export default function LoginLogout() {
     const userID = Number(document.querySelector("#login-user-id").value);
     document.cookie = `userID=${userID};`;
 
-    axios.post("http://localhost:8001/api/login", { userID }).then((res) => {
+    axios.post("https://stack-social-network.herokuapp.com/api/api/login", { userID }).then((res) => {
       const username = res.data[0].username;
       console.log("data in login: ", res.data[0]);
       set({ ...data, state: state, selected: res.data[0].id });
@@ -46,7 +46,7 @@ export default function LoginLogout() {
       // MATT'S CODE************************************************************
 
       // MATT'S CODE FOR ADDING MESSAGES NOTIFICATIONS ON LOGIN************************************************************
-      axios.post('http://localhost:8001/api/messages/unread_count', { userID })
+      axios.post('https://stack-social-network.herokuapp.com/api/api/messages/unread_count', { userID })
         .then(res => {
           setNotifications(Number(res.data[0].count));
           localStorage.setItem('unreadMessages', Number(res.data[0].count))
@@ -56,7 +56,7 @@ export default function LoginLogout() {
 
       // MATT'S CODE FOR ADDING TUTOR SESSION NOTIFICATION ON LOGIN************************************************************
 
-      axios.post('http://localhost:8001/api/tutor_experiences/unseen_count', { userID })
+      axios.post('https://stack-social-network.herokuapp.com/api/api/tutor_experiences/unseen_count', { userID })
         .then(res => {
           console.log('unseen count', res.data[0]);
           setUnseenTutor(Number(res.data[0].count))
