@@ -19,7 +19,7 @@ interface IProps {
   onChange: void;
   users: IUsers;
   onSaveEdit;
-  upDatePost: (
+  updatePost: (
     editedPost: string,
     post_id: number,
     id: number
@@ -118,6 +118,7 @@ export default function Home(index) {
                   removeComment={removeComment}
                   editComment={editComment}
                   deletePost={deletePost}
+                  updatePost={updatePost}
                 />
               </div>
             </div>

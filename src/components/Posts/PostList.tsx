@@ -26,7 +26,7 @@ interface IProps {
   deletePost: (
     post_id: number,
   ) => void;
-  upDatePost: (
+  updatePost: (
     editedPost: string,
     post_id: number,
     id: number

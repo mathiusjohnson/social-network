@@ -53,7 +53,6 @@ const LayoutPage: React.FC<{ pageContext: { layout: string } }> = ({
     username = typeof localStorage !== 'undefined' && localStorage.username;
   }
   // const { avatarUrl, userID, username } = localStorage;
-  console.log('usernameeeeeeeee', username);
 
   if (avatarUrl && userID) {
 
@@ -66,43 +65,11 @@ const LayoutPage: React.FC<{ pageContext: { layout: string } }> = ({
     console.log("current user in index layout: ", currentUser, userID);
 
 
+
     const rightNavContainer = typeof document !== 'undefined' && document.querySelector(".sc-kEqYlL.efNBuU.right");
 
-    const userDisplay = typeof document !== 'undefined' && document.querySelector('.logged-in-username');
 
-    // MATHIUS' XP BARS
-    const leftNavContainer = typeof document !== 'undefined' && document.querySelector('.Header__HeaderStyle-hhdliK bxFSuo')
-    const xpBars =
-      <ContextConsumer>
-        {({ data }) => {
-          if (!data.state) return null;
-          const currentUser = state.users.find(
-            (user) => user.id === data.selected
-          );
-          return (
-            `<div>
-              <div>         
-                  ${currentUser.mentorrating ?
-              <h4>Mentor Level</h4>
-              : ""}
-                  ${currentUser.mentorrating ?
-              <ProgressBar
-                experience={Number(currentUser.mentorrating)}
-              />
-              : ""}
-                  ${currentUser.studentrating ?
-              <h4>Student Level</h4>
-              : ""}
-                  ${currentUser.studentrating ?
-              <ProgressBar
-                experience={Number(currentUser.studentrating)}
-              />
-              : ""}
-              </div>       
-            </div>`
-          )
-        }}
-      </ContextConsumer>
+    const userDisplay = typeof document !== 'undefined' && document.querySelector('.logged-in-username');
 
     if (userDisplay) {
       userDisplay.remove();
@@ -117,10 +84,6 @@ const LayoutPage: React.FC<{ pageContext: { layout: string } }> = ({
 
     if (rightNavContainer) {
       rightNavContainer.insertAdjacentHTML("afterbegin", usernameHTML)
-    }
-
-    if (leftNavContainer) {
-      rightNavContainer.insertAdjacentHTML("afterend", xpBars);
     }
   } else {
     const userDisplay = typeof document !== 'undefined' && document.querySelector('.logged-in-username');
@@ -146,52 +109,49 @@ const LayoutPage: React.FC<{ pageContext: { layout: string } }> = ({
 
   // LOGOUT FUNCTIONALITY ************************
 
-  const logoutBtnTitle = typeof document !== 'undefined' && document.querySelector('.logout-btn-enabled');
-  let logoutBtn;
+  // const logoutBtnTitle = document.querySelector('.logout-btn-enabled');
+  // let logoutBtn;
 
-  if (logoutBtnTitle) {
-    logoutBtn = logoutBtnTitle.parentElement.parentElement
+  // if (logoutBtnTitle) {
+  //   logoutBtn = logoutBtnTitle.parentElement.parentElement
 
-    logoutBtn.addEventListener('click', () => {
+  //   logoutBtn.addEventListener('click', () => {
 
-      const currentUserID = typeof document !== 'undefined' && document.cookie.split('=')[1];
-      document.cookie = `userID=${currentUserID}; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  //     const currentUserID = document.cookie.split('=')[1];
+  //     document.cookie = `userID=${currentUserID}; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 
-      // MATT'S CODE************************************************************
-      const userDisplay = typeof document !== 'undefined' && document.querySelector('.logged-in-username');
+  //     // MATT'S CODE************************************************************
+  //     const userDisplay = document.querySelector('.logged-in-username');
 
-      if (userDisplay) {
-        userDisplay.remove();
-      }
+  //     if (userDisplay) {
+  //       userDisplay.remove();
+  //     }
 
-      typeof localStorage !== 'undefined' && localStorage.removeItem('userID');
-      typeof localStorage !== 'undefined' && localStorage.removeItem('username');
-      typeof localStorage !== 'undefined' && localStorage.removeItem('avatarUrl');
-      typeof localStorage !== 'undefined' && localStorage.removeItem('unreadMessages');
-      typeof localStorage !== 'undefined' && localStorage.removeItem('unreadTutor');
-      typeof localStorage !== 'undefined' && localStorage.removeItem('Login');
+  //     localStorage.removeItem('userID');
+  //     localStorage.removeItem('username');
+  //     localStorage.removeItem('avatarUrl');
+  //     localStorage.removeItem('unreadMessages');
+  //     localStorage.removeItem('unreadTutor');
+  //     localStorage.removeItem('Login');
 
-      logoutBtnTitle.textContent = 'Login';
+  //     logoutBtnTitle.textContent = 'Login';
 
-      // MATT'S CODE************************************************************
-    })
-  }
+  // MATT'S CODE************************************************************
+  //   })
+  // }
 
-  setTimeout(() => {
-    const loginFormHeader = typeof document !== 'undefined' && document.querySelector('.login-form-header');
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('Login') && !loginFormHeader) {
-      const allMenuTitles = typeof document !== 'undefined' && document.querySelectorAll('.menu-title');
-      if (allMenuTitles) {
-
-        for (let title of allMenuTitles) {
-          if (title.textContent === 'Login') {
-            title.textContent = 'Logout';
-            title.classList.add('logout-btn-enabled');
-          }
-        }
-      }
-    }
-  }, 1000);
+  // setTimeout(() => {
+  //   const loginFormHeader = document.querySelector('.login-form-header');
+  //   if (localStorage.getItem('Login') && !loginFormHeader) {
+  //     const allMenuTitles = document.querySelectorAll('.menu-title');
+  //     for (let title of allMenuTitles) {
+  //       if (title.textContent === 'Login') {
+  //         title.textContent = 'Logout';
+  //         title.classList.add('logout-btn-enabled');
+  //       }
+  //     }
+  //   }
+  // }, 1000);
 
 
   // LOGOUT FUNCTIONALITY ************************

@@ -93,7 +93,6 @@ export default function Messages(props) {
   }, [])
 
   function setNotifications(notifNum) {
-    console.log('notifNum', notifNum);
 
     const allMenuTitles = document.querySelectorAll('.menu-title');
     if (allMenuTitles) {

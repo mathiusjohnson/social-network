@@ -19,11 +19,10 @@ function EditPostItem(props) {
   }
   return (
     <div className="dash-editor">
-      <CardBody>
-        <div className="blue-button button-transition float-right save-btn" onClick={onSave}>Save</div>
-        <p className="time-posted">{timeSince(props.time_posted)} </p>
+      <CardBody className="">
+
         <textarea
-          className="text-body"
+          className="edit-text-body on-top"
           type="text"
           value={post}
           onChange={(event) => setPost(event.target.value)}
@@ -40,6 +39,7 @@ function EditPostItem(props) {
           onChange={onChangeInput}
           suggested={props.suggestion}
         /> */}
+        <div className="blue-button button-transition save-btn" onClick={onSave}>Save</div>
       </CardBody>
     </div>
   );

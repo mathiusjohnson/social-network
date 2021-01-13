@@ -140,3 +140,17 @@
   color:#fa4646;
   font-size: 0.9rem;
 }
+
+#logout-btn-nav {
+  color: white;
+  background: #151a30;
+  border: none;
+  padding: 0.4rem 0.7rem;
+  outline: none;
+}
+
+#logout-btn-nav:hover {
+  cursor: pointer;
+  outline: none;
+  border: none;
+}

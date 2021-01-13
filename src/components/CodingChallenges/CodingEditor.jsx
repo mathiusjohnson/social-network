@@ -88,7 +88,7 @@ export default function CodingEditor(props) {
               lineNumbers: true,
               theme: 'material'
             }} */}
-          />
+
         </div>
         <div className="coding-editor-run-container">
           <div className="editor-run-btn" onClick={() => runJS(value)}>Run Code</div>

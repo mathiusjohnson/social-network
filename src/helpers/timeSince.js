@@ -8,9 +8,10 @@ export default function timeSince(date, dbQuery) {
   // for converting GMT to MDT
   if (dbQuery) {
     seconds -= 54000;
-  } else {
-    seconds += 21600;
   }
+  // else {
+  //   seconds += 21600;
+  // }
 
 
   let interval = seconds / 31536000;

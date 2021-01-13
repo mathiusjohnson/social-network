@@ -28,26 +28,31 @@ function Editor(props) {
     techTags = selectedTags;
   };
 
-  const onSave = () => {
-    //check for empty input here
-    //empty tags should also be checked here.
-    console.log("from editor", techTags);
-    props.createPost(postObj, techTags, props.id).then(() => {
-      setValue("");
-    });
-  };
-
   const onCancel = () => {
     //check for empty input here
     //empty tags should also be checked here.
     setValue("");
   };
 
+  function validatePost() {
+    if (value === "") {
+      setError("Post cannot be blank");
+      return;
+    }
+    if (value !== ""){
+      setError("");
+      props.createPost(postObj, techTags, props.id).then(() => {
+        setValue("");
+      });          
+    }
+  }
+
   return (
     <div className="user-profile">
       <Row>
         <Col className="avatar" breakPoint={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-          <MDEditor className="editor" value={value} onChange={setValue} />
+          <MDEditor className="editor" value={value}               
+          onChange={setValue} />
         </Col>
       </Row>
       <Row>
@@ -63,7 +68,7 @@ function Editor(props) {
             <div className="checkbox">
               <Checkbox
                 checked={checkbox[1]}
-                status="Success"
+                className="checkbox-input"
                 onChange={(value) => onChangeCheckbox(value, 1)}
               >
                 Help Needed
@@ -74,7 +79,7 @@ function Editor(props) {
                 fullWidth
                 appearance="hero"
                 className="green-button green button-transition"
-                onClick={() => onSave()}
+                onClick={() => validatePost()}
               >
                 Post
               </button>
@@ -86,6 +91,9 @@ function Editor(props) {
               >
                 Cancel
               </button>
+            </div>
+            <div>
+              <section className="validation">{error}</section>
             </div>
           </div>
         </div>
