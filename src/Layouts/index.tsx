@@ -53,7 +53,6 @@ const LayoutPage: React.FC<{ pageContext: { layout: string } }> = ({
     username = typeof localStorage !== 'undefined' && localStorage.username;
   }
   // const { avatarUrl, userID, username } = localStorage;
-  console.log('usernameeeeeeeee', username);
 
   if (avatarUrl && userID) {
 
