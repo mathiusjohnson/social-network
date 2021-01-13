@@ -332,7 +332,7 @@ export default function useApplicationData() {
         });
       })
       .catch((err) => {
-        console.log("I don't *comment* this mess", err);
+        console.log("I don't *delete* this mess", err);
       });
 
     return promise;

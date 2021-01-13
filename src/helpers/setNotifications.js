@@ -1,7 +1,6 @@
 
 
 export default function setNotifications(notifNum) {
-  console.log('notifNum', notifNum);
 
   const allMenuTitles = typeof document !== 'undefined' && document.querySelectorAll('.menu-title');
   if (allMenuTitles) {

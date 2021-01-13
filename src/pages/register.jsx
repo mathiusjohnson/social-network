@@ -72,7 +72,7 @@ export default function Register() {
     }
     const avatarSrc = typeof document !== 'undefined' && document.querySelector('.selected-avatar').children[0].src;
     console.log(avatarSrc);
-    if (avatarSrc === 'http://localhost:8000/register') {
+    if (avatarSrc === 'https://stack-social-network.herokuapp.com/register') {
       setSubmitError('Please select avatar!');
       return;
     }

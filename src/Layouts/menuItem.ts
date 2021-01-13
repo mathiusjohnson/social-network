@@ -26,11 +26,11 @@ const items: MenuItemType[] = [
     icon: { name: "browser-outline" },
     link: { to: '/tutor-sessions' },
   },
-  {
-    title: "Coding Challenges",
-    icon: { name: "edit-2-outline" },
-    link: { to: "/coding-challenges" },
-  },
+  // {
+  //   title: "Coding Challenges",
+  //   icon: { name: "edit-2-outline" },
+  //   link: { to: "/coding-challenges" },
+  // },
   {
     title: "Login",
     icon: { name: "lock-outline" },

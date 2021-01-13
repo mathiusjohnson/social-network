@@ -1,6 +1,26 @@
 .dash-editor {
+	display: flex;
+	margin-top: -150px;
 	.save-btn {
+		margin-left: 300px;
 		font-size: .8em;
 		width: 60px;
+	}
+	
+	.edit-text-body {
+		display: flex;
+		justify-content: center;
+		width: 60%;
+		margin-left: 300px;
+		min-height: 125px;
+		border-radius: 5px;
+    background-color: #192038;
+		color: white;
+		border: 1px solid #222b45;
+    padding: 0.4rem 0.6rem;
+	}
+
+	.on-top {
+		z-index: -1;
 	}
 }
