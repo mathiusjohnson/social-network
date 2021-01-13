@@ -5,7 +5,6 @@ import { LayoutHeader } from "@paljs/ui/Layout";
 import { EvaIcon } from "@paljs/ui/Icon";
 import { Actions } from "@paljs/ui/Actions";
 import { breakpointDown } from "@paljs/ui/breakpoints";
-import LoginLogout from "../components/LoginLogout/LoginLogout";
 import ProgressBar from "../components/ProgressBar/ProgressBar";
 import ContextConsumer from "../context/context";
 import './Header.scss'
@@ -112,84 +111,80 @@ const Header: React.FC<HeaderProps> = (props) => {
             {
               content: (
                 <ContextConsumer>
-                    {({ data }) => {
-                      if (!data.state) return null;
-                      if (!data.selected) return null;
-                      let user;
-                      const currentUser = data.state.users.find(
-                        (user) => user.id === data.selected
-                      );
-
-                      if (currentUser) {
-                        user = currentUser;
-                      }
-                        return (
-                          <div className={title}>
-                            <span>         
-                                {user.mentorrating ? 
-                                  <span>
-                                   Mentor Lvl:
-                                  </span>
-                                : ""}
-                            </span>       
-                          </div>
-                        )
-                      
-                    }}
-                </ContextConsumer>
-              ),
-            },
-          ]}
-        />
-        <Actions
-          size="Small"
-          actions={[
-            {
-              content: (
-                <ContextConsumer>
-                    {({ data }) => {
-                      if (!data.state) return null;
-                      if (!data.selected) return null;
-                      const user = data.state.users.find(
-                        (user) => user.id === data.selected
-                      );
-                      return (
-                        <div className={experience}>
-                          <span>         
-                              {user.mentorrating ? 
-                                <span>
-                                  <ProgressBar 
-                                    experience={Number(user.mentorrating)}
-                                  />
-                                </span>
-                              : ""}
-                          </span>       
-                        </div>
-                      )
-                    }}
-                </ContextConsumer>
-              ),
-            },
-          ]}
-        />
-        <Actions
-          size="Small"
-          actions={[
-            {
-              content: (
-                <ContextConsumer>
-                    {({ data }) => {
-                      if (!data.state) return null;
-                      if (!data.selected) return null;
-                      const user = data.state.users.find(
-                        (user) => user.id === data.selected
-                      );
+                  {({ data }) => {
+                    if (!data.state) return null;
+                    if (!data.selected) return null;
+                    const currentUser = data.state.users.find(
+                      (user) => user.id === data.selected
+                    );
+                    if (currentUser) {
                       return (
                         <div className={title}>
-                          <span>         
-                              {user.studentrating ? 
-                                <span>
-                                  Student Lvl:
+                          <span>
+                            {currentUser.mentorrating ?
+                              <span>
+                                Mentor Lvl:
+                                  </span>
+                              : ""}
+                          </span>
+                        </div>
+                      )
+                    }
+                  }}
+                </ContextConsumer>
+              ),
+            },
+          ]}
+        />
+        <Actions
+          size="Small"
+          actions={[
+            {
+              content: (
+                <ContextConsumer>
+                  {({ data }) => {
+                    if (!data.state) return null;
+                    if (!data.selected) return null;
+                    const currentUser = data.state.users.find(
+                      (user) => user.id === data.selected
+                    );
+                    return (
+                      <div className={experience}>
+                        <span>
+                          {currentUser.mentorrating ?
+                            <span>
+                              <ProgressBar
+                                experience={Number(currentUser.mentorrating)}
+                              />
+                            </span>
+                            : ""}
+                        </span>
+                      </div>
+                    )
+                  }}
+                </ContextConsumer>
+              ),
+            },
+          ]}
+        />
+        <Actions
+          size="Small"
+          actions={[
+            {
+              content: (
+                <ContextConsumer>
+                  {({ data }) => {
+                    if (!data.state) return null;
+                    if (!data.selected) return null;
+                    const currentUser = data.state.users.find(
+                      (user) => user.id === data.selected
+                    );
+                    return (
+                      <div className={title}>
+                        <span>
+                          {currentUser.studentrating ?
+                            <span>
+                              Student Lvl:
                                 </span>
                             : ""}
                         </span>
@@ -207,42 +202,32 @@ const Header: React.FC<HeaderProps> = (props) => {
             {
               content: (
                 <ContextConsumer>
-                    {({ data }) => {
-                      if (!data.state) return null;
-                      if (!data.selected) return null;
-                      const user = data.state.users.find(
-                        (user) => user.id === data.selected
-                      );
-                      return (
-                        <div className={experience}>
-                          <span>         
-                              {user.studentrating ? 
-                                <span>
-                                  <ProgressBar
-                                    experience={Number(user.studentrating)}
-                                  />
-                                </span>
-                              : ""}
-                          </span>       
-                        </div>
-                      )
-                    }}
+                  {({ data }) => {
+                    if (!data.state) return null;
+                    if (!data.selected) return null;
+                    const currentUser = data.state.users.find(
+                      (user) => user.id === data.selected
+                    );
+                    return (
+                      <div className={experience}>
+                        <span>
+                          {currentUser.studentrating ?
+                            <span>
+                              <ProgressBar
+                                experience={Number(currentUser.studentrating)}
+                              />
+                            </span>
+                            : ""}
+                        </span>
+                      </div>
+                    )
+                  }}
                 </ContextConsumer>
               ),
             },
           ]}
         />
-        <Actions
-          size="Small"
-          className="right"
-          actions={[
-            {
-              content: (
-                <LoginLogout />
-              ),
-            },
-          ]}
-        />
+        <div className='sc-kEqYlL efNBuU right'></div>
       </HeaderStyle>
     </LayoutHeader>
   );

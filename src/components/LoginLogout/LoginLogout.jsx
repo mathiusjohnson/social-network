@@ -13,14 +13,14 @@ export default function LoginLogout() {
     const userID = typeof document !== 'undefined' && Number(document.querySelector("#login-user-id").value);
     document.cookie = `userID=${userID};`;
 
-    axios.post("https://stack-social-network.herokuapp.com/api/api/login", { userID }).then((res) => {
+    axios.post("https://stack-social-network.herokuapp.com/api/login", { userID }).then((res) => {
       const username = res.data[0].username;
       console.log("data in login: ", res.data[0]);
       set({ ...data, state: state, selected: res.data[0].id });
 
       // MATT'S CODE************************************************************
       const avatar = res.data[0].avatar;
-      const rightNavContainer = typeof document !== 'undefined' && document.querySelector(".sc-kEqYlL.efNBuU.right");
+      const rightNavContainer = typeof document !== 'undefined' && document.querySelector(".sc-kEqYlL.gyZWym.right");
 
       const userDisplay = typeof document !== 'undefined' && document.querySelector('.logged-in-username');
 
@@ -46,7 +46,7 @@ export default function LoginLogout() {
       // MATT'S CODE************************************************************
 
       // MATT'S CODE FOR ADDING MESSAGES NOTIFICATIONS ON LOGIN************************************************************
-      axios.post('https://stack-social-network.herokuapp.com/api/api/messages/unread_count', { userID })
+      axios.post('https://stack-social-network.herokuapp.com/api/messages/unread_count', { userID })
         .then(res => {
           setNotifications(Number(res.data[0].count));
           typeof localStorage !== 'undefined' && localStorage.setItem('unreadMessages', Number(res.data[0].count))
@@ -56,7 +56,7 @@ export default function LoginLogout() {
 
       // MATT'S CODE FOR ADDING TUTOR SESSION NOTIFICATION ON LOGIN************************************************************
 
-      axios.post('https://stack-social-network.herokuapp.com/api/api/tutor_experiences/unseen_count', { userID })
+      axios.post('https://stack-social-network.herokuapp.com/api/tutor_experiences/unseen_count', { userID })
         .then(res => {
           console.log('unseen count', res.data[0]);
           setUnseenTutor(Number(res.data[0].count))
@@ -95,7 +95,7 @@ export default function LoginLogout() {
       {({ data, set }) => {
         return (
           <div>
-            {/* <label htmlFor="login">User ID:</label>
+            <label htmlFor="login">User ID:</label>
             <select name="login" id="login-user-id">
               <option value="1">1</option>
               <option value="2">2</option>
@@ -107,12 +107,12 @@ export default function LoginLogout() {
               <option value="8">8</option>
               <option value="9">9</option>
               <option value="10">10</option>
-            </select> */}
-            {/* <button type="button" name="login" onClick={() => login(data, set)}>
+            </select>
+            <button type="button" name="login" onClick={() => login(data, set)}>
               Login
-              </button> */}
+              </button>
             <Link to={'/'}>
-              <button type="button" name="logout" id='logout-btn-nav' onClick={() => logout(data, set)}>
+              <button type="button" name="logout" onClick={() => logout(data, set)}>
                 Logout
               </button>
             </Link>
