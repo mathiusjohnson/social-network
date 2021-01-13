@@ -25,7 +25,7 @@ export default function RegisterPassword(props) {
         setErrorMsg(false);
       }
     } else {
-      const firstPassword = document.querySelector('#password-input').value;
+      const firstPassword = typeof document !== 'undefined' && document.querySelector('#password-input').value;
 
       if (currentVal.length > 5 && currentVal !== firstPassword) {
         setErrorMsg(true);

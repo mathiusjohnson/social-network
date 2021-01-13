@@ -49,30 +49,37 @@ export default function Register() {
   // ERROR HANDLING ON SUBMIT
   function handleSubmit() {
     setSubmitError('');
-    const registerErrors = document.querySelectorAll('.register-error');
-    for (let error of registerErrors) {
-      if (error.textContent) {
-        setSubmitError('Please check error messages before submitting!');
-        return;
+    const registerErrors = typeof document !== 'undefined' && document.querySelectorAll('.register-error');
+    if (registerErrors) {
+
+      for (let error of registerErrors) {
+        if (error.textContent) {
+          setSubmitError('Please check error messages before submitting!');
+          return;
+        }
       }
     }
-    const userInputs = document.querySelectorAll('.register-input');
-    for (let input of userInputs) {
-      if (!input.value.length) {
-        setSubmitError('At least one field is left blank!');
-        return;
+
+    const userInputs = typeof document !== 'undefined' && document.querySelectorAll('.register-input');
+    if (userInputs) {
+
+      for (let input of userInputs) {
+        if (!input.value.length) {
+          setSubmitError('At least one field is left blank!');
+          return;
+        }
       }
     }
-    const avatarSrc = document.querySelector('.selected-avatar').children[0].src;
+    const avatarSrc = typeof document !== 'undefined' && document.querySelector('.selected-avatar').children[0].src;
     console.log(avatarSrc);
     if (avatarSrc === 'https://stack-social-network.herokuapp.com/register') {
       setSubmitError('Please select avatar!');
       return;
     }
 
-    const usernameInput = document.querySelector('#username-input').value;
-    const emailInput = document.querySelector('#email-input').value;
-    const passwordInput = document.querySelector('#password-input').value;
+    const usernameInput = typeof document !== 'undefined' && document.querySelector('#username-input').value;
+    const emailInput = typeof document !== 'undefined' && document.querySelector('#email-input').value;
+    const passwordInput = typeof document !== 'undefined' && document.querySelector('#password-input').value;
 
     axios.post('https://stack-social-network.herokuapp.com/api/register/new', { usernameInput, emailInput, passwordInput, avatarSrc })
       .then(res => {

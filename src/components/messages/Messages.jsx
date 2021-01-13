@@ -30,7 +30,7 @@ export default function Messages(props) {
 
   useEffect(() => {
 
-    const userID = document.cookie.split('=')[1];
+    const userID = typeof document !== 'undefined' && document.cookie.split('=')[1];
 
     axios.post('https://stack-social-network.herokuapp.com/api/messages/', { userID })
       .then((data) => {
@@ -43,7 +43,7 @@ export default function Messages(props) {
         setNotifications(unreadCount);
 
         // insert into local storage ***********
-        localStorage.setItem('unreadMessages', unreadCount);
+        typeof localStorage !== 'undefined' && localStorage.setItem('unreadMessages', unreadCount);
 
         setCurrentData(currentData);
 
@@ -53,7 +53,7 @@ export default function Messages(props) {
 
         setMessageList({ messageList: newMessageList });
 
-        const username = document.querySelector('.message-header-username').textContent;
+        const username = typeof document !== 'undefined' && document.querySelector('.message-header-username').textContent;
 
         let intMessages = [];
 
@@ -96,21 +96,24 @@ export default function Messages(props) {
     console.log('notifNum', notifNum);
 
     const allMenuTitles = document.querySelectorAll('.menu-title');
-    for (let title of allMenuTitles) {
-      if (title.textContent === 'Messages') {
+    if (allMenuTitles) {
 
-        title.parentElement.style.position = 'relative';
+      for (let title of allMenuTitles) {
+        if (title.textContent === 'Messages') {
 
-        if (document.querySelector('.message-notification-num')) {
-          document.querySelector('.message-notification-num').remove();
-        }
+          title.parentElement.style.position = 'relative';
 
-        const notificationHTML = `
+          if (typeof document !== 'undefined' && document.querySelector('.message-notification-num')) {
+            document.querySelector('.message-notification-num').remove();
+          }
+
+          const notificationHTML = `
           <div class='message-notification-num'>${notifNum}</div>
-        `;
+          `;
 
-        if (notifNum) {
-          title.insertAdjacentHTML('afterend', notificationHTML);
+          if (notifNum) {
+            title.insertAdjacentHTML('afterend', notificationHTML);
+          }
         }
       }
     }
@@ -119,19 +122,24 @@ export default function Messages(props) {
 
   function changeBg(username, deselectBG) {
 
-    const msgUsername = document.querySelectorAll('.message-username');
+    const msgUsername = typeof document !== 'undefined' && document.querySelectorAll('.message-username');
     let currentEl;
+    if (msgUsername) {
 
-    for (let item of msgUsername) {
-      if (item.textContent === username) {
-        currentEl = item.parentElement.parentElement;
+      for (let item of msgUsername) {
+        if (item.textContent === username) {
+          currentEl = item.parentElement.parentElement;
+        }
       }
+
     }
+    const msgTextContainers = typeof document !== 'undefined' && document.querySelectorAll('.message-item-container');
 
-    const msgTextContainers = document.querySelectorAll('.message-item-container');
+    if (msgTextContainers) {
 
-    for (let item of msgTextContainers) {
-      item.classList.remove('message-list-selected');
+      for (let item of msgTextContainers) {
+        item.classList.remove('message-list-selected');
+      }
     }
 
     if (!deselectBG && currentEl) {
@@ -155,7 +163,7 @@ export default function Messages(props) {
     intMessages.sort((a, b) => new Date(b.time_sent) - new Date(a.time_sent))
     setCurrentMessages(intMessages);
 
-    if (document.querySelector('#msg-textarea')) {
+    if (typeof document !== 'undefined' && document.querySelector('#msg-textarea')) {
       document.querySelector('#msg-textarea').value = '';
     }
     changeBg(username);
@@ -167,7 +175,7 @@ export default function Messages(props) {
       otherUserID = intMessages[0].senderid ? intMessages[0].senderid : intMessages[0].receiverid;
     }
 
-    const currentUserID = Number(document.cookie.split('=')[1]);
+    const currentUserID = typeof document !== 'undefined' && Number(document.cookie.split('=')[1]);
 
     axios.put('https://stack-social-network.herokuapp.com/api/messages/read', { currentUserID, otherUserID })
       .then(() => {
@@ -180,20 +188,20 @@ export default function Messages(props) {
     let selectedUsername;
 
     if (createNew) {
-      selectedUsername = document.querySelector('#search-user-input').value;
+      selectedUsername = typeof document !== 'undefined' && document.querySelector('#search-user-input').value;
     }
 
-    const textInput = document.querySelector('#msg-textarea').value;
+    const textInput = typeof document !== 'undefined' && document.querySelector('#msg-textarea').value;
 
     let receiverID;
 
 
     if (!createNew) {
-      if (document.querySelector('.text-container')) {
-        receiverID = document.querySelector('.text-container').id;
+      if (typeof document !== 'undefined' && document.querySelector('.text-container')) {
+        receiverID = typeof document !== 'undefined' && document.querySelector('.text-container').id;
       }
-      else if (document.querySelector('.message-header-username').children[1].textContent) {
-        const intUsername = document.querySelector('.message-header-username').children[1].textContent;
+      else if (typeof document !== 'undefined' && document.querySelector('.message-header-username').children[1].textContent) {
+        const intUsername = typeof document !== 'undefined' && document.querySelector('.message-header-username').children[1].textContent;
 
         for (let user of avatars) {
           if (user.username === intUsername) {
@@ -219,7 +227,7 @@ export default function Messages(props) {
 
     // error handling for blank inputs
     if (!textInput) {
-      const errorContainer = document.querySelector('.error-container');
+      const errorContainer = typeof document !== 'undefined' && document.querySelector('.error-container');
       errorContainer.style.display = 'block';
 
       setTimeout(() => {
@@ -227,7 +235,7 @@ export default function Messages(props) {
       }, 2000);
 
     } else {
-      const senderID = document.cookie.split('=')[1];
+      const senderID = typeof document !== 'undefined' && document.cookie.split('=')[1];
 
       axios.post('https://stack-social-network.herokuapp.com/api/messages/new', { textInput, receiverID, senderID })
         .then((res) => {
@@ -239,7 +247,7 @@ export default function Messages(props) {
             }, 20);
           }
           setCount(count + 1);
-          document.querySelector('#msg-textarea').value = '';
+          if (typeof document !== 'undefined') document.querySelector('#msg-textarea').value = '';
 
 
           setCreateNew(false);
@@ -260,7 +268,7 @@ export default function Messages(props) {
   }
 
   function createTutorSession() {
-    const radios = document.getElementsByName('radio-mentor-student');
+    const radios = typeof document !== 'undefined' && document.getElementsByName('radio-mentor-student');
     let radioChecked;
     for (let radio of radios) {
       if (radio.checked) {
@@ -268,7 +276,7 @@ export default function Messages(props) {
       }
     }
 
-    const username = document.querySelector('#search-user-input').value;
+    const username = typeof document !== 'undefined' && document.querySelector('#search-user-input').value;
 
     if (!username) {
       setCreateError('username');
@@ -286,7 +294,7 @@ export default function Messages(props) {
         receiverID = user.id;
       }
     }
-    const creatorID = Number(document.cookie.split('=')[1]);
+    const creatorID = typeof document !== 'undefined' && Number(document.cookie.split('=')[1]);
 
     let mentorID, studentID;
     if (radioChecked === 'mentor') {

@@ -16,7 +16,7 @@ import axios from 'axios';
 
 export default function TutorSessions() {
 
-  const loggedInUserID = Number(document.cookie.split('=')[1]);
+  const loggedInUserID = typeof document !== 'undefined' && Number(document.cookie.split('=')[1]);
 
   const [currentTutorData, setCurrentTutorData] = useState([]);
   const [currentUserData, setCurrentUserData] = useState([]);
@@ -91,13 +91,13 @@ export default function TutorSessions() {
 
   useEffect(() => {
 
-    const userID = document.cookie.split('=')[1];
+    const userID = typeof document !== 'undefined' && document.cookie.split('=')[1];
 
     axios.put('https://stack-social-network.herokuapp.com/api/tutor_experiences/see_all', { userID })
       .then(res => {
         console.log('newRes', res.data);
         setUnseenTutor(0);
-        localStorage.removeItem('unreadTutor');
+        typeof localStorage !== 'undefined' && localStorage.removeItem('unreadTutor');
       })
 
 
@@ -135,7 +135,7 @@ export default function TutorSessions() {
 
   function submitRating(tutorSessionID, isMentor, rating, comments) {
 
-    const ratingUsername = document.querySelector('.rate-tutor-header').children[0].textContent;
+    const ratingUsername = typeof document !== 'undefined' && document.querySelector('.rate-tutor-header').children[0].textContent;
 
     axios.put('https://stack-social-network.herokuapp.com/api/tutor_experiences/complete', { tutorSessionID, isMentor, rating, comments })
       .then((res) => {
@@ -155,7 +155,7 @@ export default function TutorSessions() {
     console.log('r', rating);
     console.log('c', comments);
 
-    const ratingUsername = document.querySelector('.rate-tutor-header').children[0].textContent;
+    const ratingUsername = typeof document !== 'undefined' && document.querySelector('.rate-tutor-header').children[0].textContent;
 
     const tutorSessionID = unratedTutorSession.id;
 
@@ -180,7 +180,7 @@ export default function TutorSessions() {
   }
 
   function createTutorSession() {
-    const radios = document.getElementsByName('radio-mentor-student');
+    const radios = typeof document !== 'undefined' && document.getElementsByName('radio-mentor-student');
     let radioChecked;
     for (let radio of radios) {
       if (radio.checked) {
@@ -188,7 +188,7 @@ export default function TutorSessions() {
       }
     }
 
-    const username = document.querySelector('#search-user-input').value;
+    const username = typeof document !== 'undefined' && document.querySelector('#search-user-input').value;
 
     // error handling for no input
     if (!username) {
@@ -210,7 +210,7 @@ export default function TutorSessions() {
     }
     console.log('username', username);
     console.log('receiverID', receiverID);
-    const creatorID = Number(document.cookie.split('=')[1]);
+    const creatorID = typeof document !== 'undefined' && Number(document.cookie.split('=')[1]);
 
     let mentorID, studentID;
     if (radioChecked === 'mentor') {
@@ -233,7 +233,7 @@ export default function TutorSessions() {
       axios.post('https://stack-social-network.herokuapp.com/api/tutor_experiences/new', { mentorID, studentID, creatorID })
         .then((res) => {
           setCount(count + 1);
-          document.querySelector('#search-user-input').value = '';
+          if (typeof document !== 'undefined') document.querySelector('#search-user-input').value = '';
           setShowSuccess(true);
           setTimeout(() => {
             setShowSuccess(false);
@@ -288,64 +288,64 @@ export default function TutorSessions() {
 
   return (
     <ContextConsumer>
-    {({ data }) => {
-      if (!data.state) return (
-        <NewLogin></NewLogin>
-      )
-  return (
-    <div className='main-tutor-container'>
-      {!showSuccess && (<TutorCreate
-        currentUserData={currentUserData}
-        createTutorSession={createTutorSession}
-        createError={createError}
-      />
-      )}
-      {showCopyLink && (
-        <div className="copy-link">
-          Link sent and copied to clipboard!
-        </div>
-      )}
-      {showSuccess && (
-        <MessageTutorSuccess
-          tutorStyle={'tutor-success-id'}
-        />
-      )}
-      {(rateTutor || unratedSession) && (
-        <TutorRate
-          currentTutorID={currentTutorID}
-          currentUserData={currentUserData}
-          currentTutorData={currentTutorData}
-          submitRating={submitRating}
-          otherUsername={otherUsername}
-          unratedSession={unratedSession}
-          otherUserSubmitRating={otherUserSubmitRating}
-          cancelRateSession={cancelRateSession}
-        />
-      )}
-      {showPointsGiven && (
-        <TutorShowPoints
-          pointsArray={pointsArray}
-        />
-      )}
-      <TutorFilter
-        sortByStatus={sortByStatus}
-        selectFilterBtn={selectFilterBtn}
-      />
-      <TutorHistory
-        currentTutorData={currentTutorData}
-        currentUserData={currentUserData}
-        acceptAction={acceptAction}
-        declineCancelAction={declineCancelAction}
-        completeAction={completeAction}
-        cancelDecline={cancelDecline}
-        cancelConfirmDelete={cancelConfirmDelete}
-        confirmConfirmDelete={confirmConfirmDelete}
-        tutorSessionID={tutorSessionID}
-        generateGoogleLink={generateGoogleLink}
-      />
-    </div>
-      );
-    }}
-  </ContextConsumer>
+      {({ data }) => {
+        if (!data.state) return (
+          <NewLogin></NewLogin>
+        )
+        return (
+          <div className='main-tutor-container'>
+            {!showSuccess && (<TutorCreate
+              currentUserData={currentUserData}
+              createTutorSession={createTutorSession}
+              createError={createError}
+            />
+            )}
+            {showCopyLink && (
+              <div className="copy-link">
+                Link sent and copied to clipboard!
+              </div>
+            )}
+            {showSuccess && (
+              <MessageTutorSuccess
+                tutorStyle={'tutor-success-id'}
+              />
+            )}
+            {(rateTutor || unratedSession) && (
+              <TutorRate
+                currentTutorID={currentTutorID}
+                currentUserData={currentUserData}
+                currentTutorData={currentTutorData}
+                submitRating={submitRating}
+                otherUsername={otherUsername}
+                unratedSession={unratedSession}
+                otherUserSubmitRating={otherUserSubmitRating}
+                cancelRateSession={cancelRateSession}
+              />
+            )}
+            {showPointsGiven && (
+              <TutorShowPoints
+                pointsArray={pointsArray}
+              />
+            )}
+            <TutorFilter
+              sortByStatus={sortByStatus}
+              selectFilterBtn={selectFilterBtn}
+            />
+            <TutorHistory
+              currentTutorData={currentTutorData}
+              currentUserData={currentUserData}
+              acceptAction={acceptAction}
+              declineCancelAction={declineCancelAction}
+              completeAction={completeAction}
+              cancelDecline={cancelDecline}
+              cancelConfirmDelete={cancelConfirmDelete}
+              confirmConfirmDelete={confirmConfirmDelete}
+              tutorSessionID={tutorSessionID}
+              generateGoogleLink={generateGoogleLink}
+            />
+          </div>
+        );
+      }}
+    </ContextConsumer>
   );
 }

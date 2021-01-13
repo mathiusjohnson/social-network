@@ -16,7 +16,6 @@
     "axios": "^0.20.0",
     "body-parser": "^1.19.0",
     "class-names": "^1.0.0",
-    "codemirror": "^5.58.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "env": "0.0.2",
@@ -34,7 +33,6 @@
     "helmet": "^4.1.1",
     "pusher-js": "^7.0.0",
     "react": "^16.13.1",
-    "react-codemirror2": "^7.2.1",
     "react-dom": "^16.13.1",
     "react-dropdown-select": "^4.5.2",
     "react-jss": "^10.4.0",
@@ -46,7 +44,8 @@
     "react-tag-autocomplete": "^6.1.0",
     "sandbox": "^0.8.6",
     "styled-components": "^5.2.0",
-    "ws": "^7.3.1"
+    "ws": "^7.3.1",
+    "yarn": "^1.22.10"
   },
   "scripts": {
     "eject": "react-scripts eject",
@@ -107,5 +106,5 @@
     "simple-react-comments": "^1.1.0",
     "typescript": "4.0.2"
   },
-  "proxy": "http://localhost:8001"
+  "proxy": "https://stack-network.herokuapp.com"
 }

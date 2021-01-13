@@ -191,11 +191,11 @@ const Header: React.FC<HeaderProps> = (props) => {
                                 <span>
                                   Student Lvl:
                                 </span>
-                              : ""}
-                          </span>       
-                        </div>
-                      )
-                    }}
+                            : ""}
+                        </span>
+                      </div>
+                    )
+                  }}
                 </ContextConsumer>
               ),
             },
@@ -238,7 +238,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           actions={[
             {
               content: (
-                  <LoginLogout/>                
+                <LoginLogout />
               ),
             },
           ]}

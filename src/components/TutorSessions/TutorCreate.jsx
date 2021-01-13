@@ -10,7 +10,7 @@ export default function TutorCreate(props) {
 
     const usernameList = props.currentUserData;
 
-    const currentUserID = Number(document.cookie.split('=')[1]);
+    const currentUserID = typeof document !== 'undefined' && Number(document.cookie.split('=')[1]);
     const filteredUsernameList = usernameList.filter(user => {
       return user.id !== currentUserID;
     });

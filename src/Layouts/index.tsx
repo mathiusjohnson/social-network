@@ -46,7 +46,14 @@ const LayoutPage: React.FC<{ pageContext: { layout: string } }> = ({
   const props = {}
 
   // MATT'S STUFF FOR SETTING LOGIN NAME *************************************************
-  const { avatarUrl, userID, username } = localStorage;
+  let avatarUrl, userID, username;
+  if (typeof localStorage !== 'undefined') {
+    avatarUrl = typeof localStorage !== 'undefined' && localStorage.avatarUrl;
+    userID = typeof localStorage !== 'undefined' && localStorage.userID;
+    username = typeof localStorage !== 'undefined' && localStorage.username;
+  }
+  // const { avatarUrl, userID, username } = localStorage;
+  console.log('usernameeeeeeeee', username);
 
   if (avatarUrl && userID) {
 
@@ -57,13 +64,14 @@ const LayoutPage: React.FC<{ pageContext: { layout: string } }> = ({
 
     // if (!currentUser) return null;
     console.log("current user in index layout: ", currentUser, userID);
-    
-    
-    const rightNavContainer = document.querySelector(".sc-kEqYlL.gyZWym.right");
 
-    const userDisplay = document.querySelector('.logged-in-username');
 
-    
+
+    const rightNavContainer = typeof document !== 'undefined' && document.querySelector(".sc-kEqYlL.efNBuU.right");
+
+
+    const userDisplay = typeof document !== 'undefined' && document.querySelector('.logged-in-username');
+
     if (userDisplay) {
       userDisplay.remove();
     }
@@ -79,7 +87,7 @@ const LayoutPage: React.FC<{ pageContext: { layout: string } }> = ({
       rightNavContainer.insertAdjacentHTML("afterbegin", usernameHTML)
     }
   } else {
-    const userDisplay = document.querySelector('.logged-in-username');
+    const userDisplay = typeof document !== 'undefined' && document.querySelector('.logged-in-username');
 
     if (userDisplay) {
       userDisplay.remove();
@@ -88,7 +96,12 @@ const LayoutPage: React.FC<{ pageContext: { layout: string } }> = ({
   // MATT'S STUFF FOR SETTING LOGIN NAME *************************************************
 
   // MATT'S STUFF FOR MESSAGES + TUTOR NOTIFICATIONS *************************************************
-  const { unreadMessages, unreadTutor } = localStorage;
+  let unreadMessages, unreadTutor;
+  if (typeof localStorage !== 'undefined') {
+    unreadMessages = typeof localStorage !== 'undefined' && localStorage.unreadMessages;
+    unreadTutor = typeof localStorage !== 'undefined' && localStorage.unreadTutor;
+  }
+  // const { unreadMessages, unreadTutor } = localStorage;
 
   setNotifications(unreadMessages);
   setUnseenTutor(unreadTutor);
@@ -124,7 +137,7 @@ const LayoutPage: React.FC<{ pageContext: { layout: string } }> = ({
 
   //     logoutBtnTitle.textContent = 'Login';
 
-      // MATT'S CODE************************************************************
+  // MATT'S CODE************************************************************
   //   })
   // }
 

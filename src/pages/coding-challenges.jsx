@@ -18,7 +18,7 @@ export default function CodingChallenges() {
 
   useEffect(() => {
 
-    let userID = document.cookie.split('=')[1];
+    let userID = typeof document !== 'undefined' && document.cookie.split('=')[1];
     if (userID) userID = Number(userID);
 
     const promiseUserChallenges = axios.get('https://stack-social-network.herokuapp.com/api/user_challenges');

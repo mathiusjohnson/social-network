@@ -190,6 +190,31 @@
     margin-top: 30px;
     font-size: .8em;
     padding: 0.2rem 0.5rem;
+    color: rgb(250, 70, 70);
+    border: 1px solid rgb(250, 70, 70);
+
+  }
+
+  .delete-button-transition {
+    background: linear-gradient(to right, white, rgb(250, 70, 70) 50%, white 50%);
+    overflow: hidden;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 200% 100%;
+    background-position: 110%;
+    transition: background-position 275ms ease;
+    text-decoration: none;
+    color: rgb(250, 70, 70);
+    background-position: 100% 0;
+    transition: 0.2s;
+  }
+
+  .delete-button-transition:hover {
+    cursor: pointer;
+    color: white;
+    background-position: 0 100%;
+    -webkit-text-fill-color: transparent;
+    box-shadow: 1px 1px 9px #fff0f5;
   }
 
   .edit-btn {
@@ -212,13 +237,13 @@
   }
 
   .love:hover {
-    color: red;
+    color: rgb(250, 70, 70);
     cursor: pointer;
     margin-right: 5px;
   }
 
   .unlove {
-    color: red;
+    color: rgb(250, 70, 70);
     margin-right: 5px;
     margin-bottom: 3px;
     margin-top: 12px;
@@ -289,7 +314,6 @@
   .collapsible-content {
     max-height: 0px;
     overflow: hidden;
-
     transition: max-height 0.25s ease-in-out;
   }
 

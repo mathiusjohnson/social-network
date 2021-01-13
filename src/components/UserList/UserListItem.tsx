@@ -10,12 +10,11 @@ import "./UserListItem.scss";
 export default function UserListItem(props) {	
 	const stack = props.mentor_stack.map((stack, index) => {
     if (stack.user_id === props.userId) {
-			console.log("stack name: ", stack.name);
 			
       return <li className="list" key={index}>{stack.name}&nbsp;</li>
     }
 	})
-	console.log("props stack: ", stack);
+	console.log("props stack: ", props);
 	
   return (
     <div className="userlist">

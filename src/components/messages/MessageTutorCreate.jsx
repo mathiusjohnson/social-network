@@ -25,7 +25,7 @@ export default function MessageTutorCreate(props) {
 
     const usernameList = props.avatarList;
 
-    const currentUserID = Number(document.cookie.split('=')[1]);
+    const currentUserID = typeof document !== 'undefined' && Number(document.cookie.split('=')[1]);
     const filteredUsernameList = usernameList.filter(user => {
       return user.id !== currentUserID;
     });

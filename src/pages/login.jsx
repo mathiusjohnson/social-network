@@ -79,16 +79,18 @@ export default function Login() {
           console.log('username', username)
           console.log('userId', userID)
           console.log('avatat', avatar)
-          set({ ...data, state: state, selected: res.data[0].id });
 
           // MATT'S CODE************************************************************
-          const rightNavContainer = document.querySelector(".sc-kEqYlL.gyZWym.right");
+          const rightNavContainer = typeof document !== 'undefined' && document.querySelector(".sc-kEqYlL.efNBuU.right");
+          console.log('rightNAv!', rightNavContainer);
 
-          const userDisplay = document.querySelector('.logged-in-username');
+          const userDisplay = typeof document !== 'undefined' && document.querySelector('.logged-in-username');
 
           if (userDisplay) {
             userDisplay.remove();
           }
+
+          console.log('before', username);
 
           const usernameHTML = `
             <div class='logged-in-username' style='display: flex; align-items: center; justify-content: center'>
@@ -97,21 +99,23 @@ export default function Login() {
             </div>
         `;
 
+          console.log(usernameHTML);
+
           if (rightNavContainer) {
             rightNavContainer.insertAdjacentHTML("afterbegin", usernameHTML);
           }
 
           // MATT'S CODE************************************************************
-          localStorage.setItem('userID', userID);
-          localStorage.setItem('username', username);
-          localStorage.setItem('avatarUrl', avatar);
+          typeof localStorage !== 'undefined' && localStorage.setItem('userID', userID);
+          typeof localStorage !== 'undefined' && localStorage.setItem('username', username);
+          typeof localStorage !== 'undefined' && localStorage.setItem('avatarUrl', avatar);
           // MATT'S CODE************************************************************
 
           // MATT'S CODE FOR ADDING MESSAGES NOTIFICATIONS ON LOGIN************************************************************
           axios.post('https://stack-social-network.herokuapp.com/api/messages/unread_count', { userID })
             .then(res => {
               setNotifications(Number(res.data[0].count));
-              localStorage.setItem('unreadMessages', Number(res.data[0].count))
+              typeof localStorage !== 'undefined' && localStorage.setItem('unreadMessages', Number(res.data[0].count))
             })
 
           // MATT'S CODE FOR ADDING MESSAGES NOTIFICATIONS ON LOGIN************************************************************
@@ -122,8 +126,11 @@ export default function Login() {
             .then(res => {
               console.log('unseen count', res.data[0]);
               setUnseenTutor(Number(res.data[0].count))
-              localStorage.setItem('unreadTutor', Number(res.data[0].count))
+              typeof localStorage !== 'undefined' && localStorage.setItem('unreadTutor', Number(res.data[0].count))
             })
+
+          set({ ...data, state: state, selected: res.data[0].id });
+
 
           // MATT'S CODE FOR ADDING TUTOR SESSION NOTIFICATION ON LOGIN************************************************************
 
@@ -148,10 +155,10 @@ export default function Login() {
           // localStorage.setItem('Login', true);
 
           // redirect to home page
-          setRedirect(true);
-          setTimeout(() => {
-            document.querySelector('.dashboard-redirect').click();            
-          }, 500);
+          // setRedirect(true);
+          // setTimeout(() => {
+          //   if (typeof document !== 'undefined') document.querySelector('.dashboard-redirect').click();
+          // }, 500);
 
         } else {
           // if username or password are not correct

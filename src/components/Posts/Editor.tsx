@@ -17,7 +17,13 @@ function Editor(props) {
     setCheckbox({ ...checkbox, [name]: value });
   };
 
-  const { avatarUrl, userID, username } = localStorage;
+  let avatarUrl, userID, username;
+  if (typeof localStorage !== 'undefined') {
+    avatarUrl = typeof localStorage !== 'undefined' && localStorage.avatarUrl
+    userID = typeof localStorage !== 'undefined' && localStorage.userID
+    username = typeof localStorage !== 'undefined' && localStorage.usreUrl
+  }
+  // const { avatarUrl, userID, username } = localStorage;
 
   return (
     <>
@@ -47,42 +53,43 @@ function Editor(props) {
               setError("Post cannot be blank");
               return;
             }
-            if (value !== ""){
+            if (value !== "") {
               setError("");
               props.createPost(postObj, techTags, currentUser.id).then(() => {
                 setValue("");
-              });          
+              });
             }
           }
           return (
             <>
-            <div className="flex">
-              <MDEditor className="editor" value={value} onChange={setValue} />
-              <div className="flex-row">
-                <div className="tags">
-                  <Tags suggested={props.suggestion} onChange={onChangeInput} />
-                </div>
-                <div className="checkbox">
-                  <Checkbox
-                    checked={checkbox[1]}
-                    onChange={(value) => onChangeCheckbox(value, 1)}
-                  >
-                    Mentor Help Needed
+              <div className="flex">
+                <MDEditor className="editor" value={value} onChange={setValue} />
+                <div className="flex-row">
+                  <div className="tags">
+                    <Tags suggested={props.suggestion} onChange={onChangeInput} />
+                  </div>
+                  <div className="checkbox">
+                    <Checkbox
+                      checked={checkbox[1]}
+                      status="Success"
+                      onChange={(value) => onChangeCheckbox(value, 1)}
+                    >
+                      Mentor Help Needed
                   </Checkbox>
+                  </div>
                 </div>
+                <Col key={1} offset={{ xs: 11 - 1 }} breakPoint={{ xs: 1 + 1 }}>
+                  <div
+                    className="post-btn"
+                    onClick={() => validatePost()}
+                  >
+                    Post
+                </div>
+                </Col>
               </div>
-              <Col key={1} offset={{ xs: 11 - 1 }} breakPoint={{ xs: 1 + 1 }}>
-                <div
-                  className="post-btn"
-                  onClick={() => validatePost()}
-                >
-                  Post
-                </div>
-              </Col>
-            </div>
-            <div>
-              <section className="validation">{error}</section>
-            </div>
+              <div>
+                <section className="validation">{error}</section>
+              </div>
             </>
           );
         }}

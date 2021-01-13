@@ -97,21 +97,21 @@ export default function useApplicationData() {
   }, []);
 
   // FOR WEBSOCKET
-  useEffect(() => {
-    const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+  // useEffect(() => {
+  //   const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
 
-    socket.onopen = () => socket.send("ping");
-    socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.type === SET_POINTS) {
-        dispatch(data);
-      }
-    };
+  //   socket.onopen = () => socket.send("ping");
+  //   socket.onmessage = (event) => {
+  //     const data = JSON.parse(event.data);
+  //     if (data.type === SET_POINTS) {
+  //       dispatch(data);
+  //     }
+  //   };
 
-    return () => {
-      socket.close();
-    };
-  }, []);
+  //   return () => {
+  //     socket.close();
+  //   };
+  // }, []);
 
   const setSelectedUser = (userID) => {
     dispatch({
@@ -163,7 +163,7 @@ export default function useApplicationData() {
           });
         })
       ).then(
-        axios.spread(function (...res) {
+        axios.spread(function(...res) {
           // all requests are now complete
           console.log("success");
         })
@@ -332,7 +332,7 @@ export default function useApplicationData() {
         });
       })
       .catch((err) => {
-        console.log("I don't *comment* this mess", err);
+        console.log("I don't *delete* this mess", err);
       });
 
     return promise;

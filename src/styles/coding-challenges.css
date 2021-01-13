@@ -236,6 +236,9 @@
   margin-right: 1rem;
 }
 
+.coding-editor-editor {
+  height: 75%;
+}
 .coding-editor-title {
   text-decoration: underline;
   font-size: 1.2rem;
@@ -244,11 +247,11 @@
   width: 100%;
   text-align: center;
 }
-
+/* 
 .controlled-editor, .CodeMirror {
   height: 260px;
   margin-top: 1rem;
-}
+} */
 
 .coding-space-wrapper {
   display: flex;

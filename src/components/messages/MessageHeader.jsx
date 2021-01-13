@@ -18,7 +18,7 @@ export default function MessageHeader(props) {
     avatar = null;
   }
 
-  const currentUserID = Number(document.cookie.split('=')[1]);
+  const currentUserID = typeof document !== 'undefined' && Number(document.cookie.split('=')[1]);
 
   function getUsernameList(props) {
 

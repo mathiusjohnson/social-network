@@ -18,7 +18,7 @@ const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
 function PostListItem(props) {
-  const senderID = document.cookie.split("=")[1];
+  const senderID = typeof document !== 'undefined' && document.cookie.split("=")[1];
   const [value, setValue] = React.useState("Comment here...");
   const { mode, transition, back } = useVisualMode(SHOW);
   const [error, setError] = useState("");
@@ -69,24 +69,24 @@ function PostListItem(props) {
           avatar: currentUser.avatar,
           username: currentUser.username,
         };
-        
+
         function onValidateComment() {
           if (value === "") {
             setError("Comment cannot be blank");
             return;
           }
-          if (value !== ""){
+          if (value !== "") {
             setError("");
             props.createComment(
-              props.post.post_id,                 
+              props.post.post_id,
               currentUser.id,
               value,
               commentObj)
               .then(() => {
-            setValue("");
-          });         
+                setValue("");
+              });
+          }
         }
-      }
 
         return (
           <Col
@@ -113,8 +113,8 @@ function PostListItem(props) {
                       </button>
                     </div>
                   ) : (
-                    ""
-                  )}
+                      ""
+                    )}
                   <p className="time-posted">
                     {timeSince(props.post.time_posted)}{" "}
                   </p>
@@ -151,11 +151,11 @@ function PostListItem(props) {
                 <div className="collapsible-content">
                   <div className="content-inner">
                     {commentList}
-                    <CommentForm 
-                      onValidateComment={onValidateComment} 
+                    <CommentForm
+                      onValidateComment={onValidateComment}
                       error={error}
                       setError={setError}
-                      />
+                    />
                   </div>
                 </div>
               </div>
