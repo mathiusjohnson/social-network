@@ -20,7 +20,7 @@ export default function Login() {
 
   useEffect(() => {
 
-    const promiseAvatars = axios.get('https://stack-network.herokuapp.com/api/register/avatars');
+    const promiseAvatars = axios.get('https://stack-social-network.herokuapp.com/api/register/avatars');
 
     Promise.all([promiseAvatars])
       .then(all => {
@@ -64,7 +64,7 @@ export default function Login() {
       return;
     }
 
-    axios.post("https://stack-network.herokuapp.com/api/login-real", { username, password })
+    axios.post("https://stack-social-network.herokuapp.com/api/login-real", { username, password })
       .then((res) => {
         console.log('res', res.data);
         // if username/password are correct
@@ -108,7 +108,7 @@ export default function Login() {
           // MATT'S CODE************************************************************
 
           // MATT'S CODE FOR ADDING MESSAGES NOTIFICATIONS ON LOGIN************************************************************
-          axios.post('https://stack-network.herokuapp.com/api/messages/unread_count', { userID })
+          axios.post('https://stack-social-network.herokuapp.com/api/messages/unread_count', { userID })
             .then(res => {
               setNotifications(Number(res.data[0].count));
               typeof localStorage !== 'undefined' && localStorage.setItem('unreadMessages', Number(res.data[0].count))
@@ -118,7 +118,7 @@ export default function Login() {
 
           // MATT'S CODE FOR ADDING TUTOR SESSION NOTIFICATION ON LOGIN************************************************************
 
-          axios.post('https://stack-network.herokuapp.com/api/tutor_experiences/unseen_count', { userID })
+          axios.post('https://stack-social-network.herokuapp.com/api/tutor_experiences/unseen_count', { userID })
             .then(res => {
               console.log('unseen count', res.data[0]);
               setUnseenTutor(Number(res.data[0].count))

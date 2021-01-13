@@ -5,7 +5,6 @@ import { LayoutHeader } from "@paljs/ui/Layout";
 import { EvaIcon } from "@paljs/ui/Icon";
 import { Actions } from "@paljs/ui/Actions";
 import { breakpointDown } from "@paljs/ui/breakpoints";
-import LoginLogout from "../components/LoginLogout/LoginLogout";
 import ProgressBar from "../components/ProgressBar/ProgressBar";
 import ContextConsumer from "../context/context";
 import './Header.scss'
@@ -118,17 +117,19 @@ const Header: React.FC<HeaderProps> = (props) => {
                     const currentUser = data.state.users.find(
                       (user) => user.id === data.selected
                     );
-                    return (
-                      <div className={title}>
-                        <span>
-                          {currentUser.mentorrating ?
-                            <span>
-                              Mentor Lvl:
-                                </span>
-                            : ""}
-                        </span>
-                      </div>
-                    )
+                    if (currentUser) {
+                      return (
+                        <div className={title}>
+                          <span>
+                            {currentUser.mentorrating ?
+                              <span>
+                                Mentor Lvl:
+                                  </span>
+                              : ""}
+                          </span>
+                        </div>
+                      )
+                    }
                   }}
                 </ContextConsumer>
               ),

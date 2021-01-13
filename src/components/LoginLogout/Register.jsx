@@ -17,8 +17,8 @@ export default function Register() {
 
   useEffect(() => {
 
-    const promiseAvatars = axios.get('https://stack-network.herokuapp.com/api/register/avatars');
-    const promiseRandomUsernames = axios.get('https://stack-network.herokuapp.com/api/register/random_usernames')
+    const promiseAvatars = axios.get('https://stack-social-network.herokuapp.com/api/register/avatars');
+    const promiseRandomUsernames = axios.get('https://stack-social-network.herokuapp.com/api/register/random_usernames')
 
     Promise.all([promiseAvatars, promiseRandomUsernames])
       .then(all => {
@@ -80,7 +80,7 @@ export default function Register() {
     const emailInput = typeof document !== 'undefined' && document.querySelector('#email-input').value;
     const passwordInput = typeof document !== 'undefined' && document.querySelector('#password-input').value;
 
-    axios.post('https://stack-network.herokuapp.com/api/register/new', { usernameInput, emailInput, passwordInput, avatarSrc })
+    axios.post('https://stack-social-network.herokuapp.com/api/register/new', { usernameInput, emailInput, passwordInput, avatarSrc })
       .then(res => {
         console.log(res);
         setSubmitSuccess(true);

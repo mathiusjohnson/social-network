@@ -32,7 +32,7 @@ export default function Messages(props) {
 
     const userID = typeof document !== 'undefined' && document.cookie.split('=')[1];
 
-    axios.post('https://stack-network.herokuapp.com/api/messages/', { userID })
+    axios.post('https://stack-social-network.herokuapp.com/api/messages/', { userID })
       .then((data) => {
         const currentUserID = data.data.userId;
         const currentData = data.data.data;
@@ -86,7 +86,7 @@ export default function Messages(props) {
   }, [count]);
 
   useEffect(() => {
-    axios.get('https://stack-network.herokuapp.com/api/user_profiles')
+    axios.get('https://stack-social-network.herokuapp.com/api/user_profiles')
       .then(res => {
         setAvatars(res.data);
       })
@@ -177,7 +177,7 @@ export default function Messages(props) {
 
     const currentUserID = typeof document !== 'undefined' && Number(document.cookie.split('=')[1]);
 
-    axios.put('https://stack-network.herokuapp.com/api/messages/read', { currentUserID, otherUserID })
+    axios.put('https://stack-social-network.herokuapp.com/api/messages/read', { currentUserID, otherUserID })
       .then(() => {
         setCount(count + 1);
       })
@@ -237,7 +237,7 @@ export default function Messages(props) {
     } else {
       const senderID = typeof document !== 'undefined' && document.cookie.split('=')[1];
 
-      axios.post('https://stack-network.herokuapp.com/api/messages/new', { textInput, receiverID, senderID })
+      axios.post('https://stack-social-network.herokuapp.com/api/messages/new', { textInput, receiverID, senderID })
         .then((res) => {
           console.log('resssss', res);
           if (createNew) {
@@ -314,7 +314,7 @@ export default function Messages(props) {
       }, 2000);
       return;
     } else {
-      axios.post('https://stack-network.herokuapp.com/api/tutor_experiences/new', { mentorID, studentID, creatorID })
+      axios.post('https://stack-social-network.herokuapp.com/api/tutor_experiences/new', { mentorID, studentID, creatorID })
         .then(() => {
           setShowTutor(false);
           setCount(count + 1);
