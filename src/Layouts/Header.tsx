@@ -227,17 +227,6 @@ const Header: React.FC<HeaderProps> = (props) => {
             },
           ]}
         />
-        {/*<Actions
-          size="Small"
-          className="right"
-          actions={[
-            {
-              content: (
-                  <LoginLogout/>                
-              ),
-            },
-          ]}
-        /> */}
         <div className='sc-kEqYlL efNBuU right'></div>
       </HeaderStyle>
     </LayoutHeader>
